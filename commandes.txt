@@ -1,3 +1,18 @@
 demarrer un projet avec git: git init (dans le repertoire que l'on veut)
+
 voir le status de son projet : git status 
-voir l'historique de ses commit (avec des precisons comme qui les a fait, l'heure, et la description" : git log 
+
+voir l'historique de ses commit (avec des precisons comme qui les a fait, l'heure, et la description" : git log
+
+envoyer son travaille sur le depot distant de github : git push [nom du dossier distant] [la branche que l'on veut envoyer] 
+le plus souvant on fait un git push origin matser
+
+voir les commits mais sur quel fichiers ils ont été effectués : git log --name-status
+
+voir les n dernier commit : git log -(n)
+<<<<<<< HEAD
+
+je met du texte pour faire quelques tests
+=======
+>>>>>>> 7b71f1d43c89743acb207b3c66113c3e13598f34
+	
