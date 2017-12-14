@@ -1,0 +1,3 @@
+demarrer un projet avec git: git init (dans le repertoire que l'on veut)
+voir le status de son projet : git status 
+voir l'historique de ses commit (avec des precisons comme qui les a fait, l'heure, et la description" : git log 
