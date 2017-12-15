@@ -10,9 +10,6 @@ le plus souvant on fait un git push origin matser
 voir les commits mais sur quel fichiers ils ont été effectués : git log --name-status
 
 voir les n dernier commit : git log -(n)
-<<<<<<< HEAD
 
-je met du texte pour faire quelques tests
-=======
->>>>>>> 7b71f1d43c89743acb207b3c66113c3e13598f34
-	
+
+effacer les dernier commit fait sur un fichier:  git reset --soft HEAD^ (efface l'avant dernier commit)
