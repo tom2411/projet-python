@@ -69,7 +69,7 @@ assert setVal([[0,0,0],[0,0,0],[0,0,9]],2,2,5)==[[0,0,0],[0,0,0],[0,0,5]]
 #------------------------------------------
 # decalages
 #------------------------------------------
-matrice= Matrice(3,3,0)
+
 def decalageLigneAGauche(matrice, numLig, nouvelleValeur):
     """
     permet de décaler une ligne vers la gauche en insérant une nouvelle
@@ -84,15 +84,17 @@ def decalageLigneAGauche(matrice, numLig, nouvelleValeur):
         for i in range(len(matrice)):
             if i+1==numLig:
                 ligne=matrice[i]
-                ligne.insert(0,nouvelleValeur)
-                valeur_rejettee=ligne[len(ligne)-1]
-                ligne.remove(ligne[len(ligne)-1])
-    return valeur_rejettee
+                ligne.insert(len(ligne),nouvelleValeur)
+                valeur_rejettee=ligne[0]
+                ligne.remove(ligne[0])
+            #else rien
+    #else rien
+    return ligne
 
-assert decalageLigneAGauche(matrice,1,5)==0
+assert decalageLigneAGauche([[1,2,3],[4,5,6],[7,8,9]],1,5)==[2,3,5]
 
 
-def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
+def decalageLigneADroite(matrice, numLig, nouvelleValeur):
     """
     decale la ligne numLig d'une case vers la droite en insérant une nouvelle
     valeur pour remplacer la premiere case à gauche de cette ligne
@@ -101,7 +103,21 @@ def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-    pass
+    if numLig<=getNbLignes(matrice):
+        for i in range(len(matrice)):
+            if i+1==numLig:
+                ligne=matrice[i]
+                ligne.insert(0,nouvelleValeur)
+                valeur_rejettee=ligne[len(ligne)-1]
+                ligne.pop()
+            #else rien
+    #else rien
+    return ligne
+
+assert decalageLigneADroite([[1,2,3],[4,5,6],[7,8,9]],1,5)==[5,1,2]
+
+
+
 def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
     """
     decale la colonne numCol d'une case vers le haut en insérant une nouvelle
