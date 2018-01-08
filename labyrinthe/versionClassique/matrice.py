@@ -69,7 +69,8 @@ assert setVal([[0,0,0],[0,0,0],[0,0,9]],2,2,5)==[[0,0,0],[0,0,0],[0,0,5]]
 #------------------------------------------
 # decalages
 #------------------------------------------
-def decalageLigneAGauche(matrice, numLig, nouvelleValeur=0):
+matrice= Matrice(3,3,0)
+def decalageLigneAGauche(matrice, numLig, nouvelleValeur):
     """
     permet de décaler une ligne vers la gauche en insérant une nouvelle
     valeur pour remplacer la premiere case à droite de cette ligne
@@ -79,7 +80,17 @@ def decalageLigneAGauche(matrice, numLig, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat la valeur qui a été ejectée lors du décalage
     """
-    pass
+    if numLig<=getNbLignes(matrice):
+        for i in range(len(matrice)):
+            if i+1==numLig:
+                ligne=matrice[i]
+                ligne.insert(0,nouvelleValeur)
+                valeur_rejettee=ligne[len(ligne)-1]
+                ligne.remove(ligne[len(ligne)-1])
+    return valeur_rejettee
+
+assert decalageLigneAGauche(matrice,1,5)==0
+
 
 def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
     """
