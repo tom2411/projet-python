@@ -93,7 +93,6 @@ def decalageLigneAGauche(matrice, numLig, nouvelleValeur):
 
 assert decalageLigneAGauche([[1,2,3],[4,5,6],[7,8,9]],1,5)==[2,3,5]
 
-
 def decalageLigneADroite(matrice, numLig, nouvelleValeur):
     """
     decale la ligne numLig d'une case vers la droite en insérant une nouvelle
@@ -116,8 +115,6 @@ def decalageLigneADroite(matrice, numLig, nouvelleValeur):
 
 assert decalageLigneADroite([[1,2,3],[4,5,6],[7,8,9]],1,5)==[5,1,2]
 
-
-
 def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
     """
     decale la colonne numCol d'une case vers le haut en insérant une nouvelle
@@ -127,7 +124,21 @@ def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-    pass
+    if numCol<=getNbColonnes(matrice):
+        for i in range(len(matrice)):
+            if i+1==numCol:
+                for i in range(getNbColonnes(matrice)):
+                    valeur_intermediaire=matrice[len(matrice)-i-1][numCol-1]
+                    matrice[len(matrice)-i-1][numCol-1]=nouvelleValeur
+                    nouvelleValeur=valeur_intermediaire
+                valeur_rejettee=valeur_intermediaire
+            #else rien
+    #else rien
+    return valeur_rejettee
+
+#assert decalageColonneEnHaut([[1,2,3],[4,5,6],[7,8,9]],1,5)==[[4,2,3],[7,5,6],[5,8,9]]
+assert decalageColonneEnHaut([[1,2,3],[4,5,6],[7,8,9]],1,5)==1
+
 
 def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
     """
@@ -138,4 +149,17 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-    pass
+    if numCol<=getNbColonnes(matrice):
+        for i in range(len(matrice)):
+            if i+1==numCol:
+                for i in range(getNbColonnes(matrice)):
+                    valeur_intermediaire=matrice[i][numCol-1]
+                    matrice[i][numCol-1]=nouvelleValeur
+                    nouvelleValeur=valeur_intermediaire
+                valeur_rejettee=valeur_intermediaire
+            #else rien
+    #else rien
+    return valeur_rejettee
+
+#assert decalageColonneEnBas([[1,2,3],[4,5,6],[7,8,9]],1,5)==[[5,2,3],[1,5,6],[4,8,9]]
+assert decalageColonneEnBas([[1,2,3],[4,5,6],[7,8,9]],1,5)==7
