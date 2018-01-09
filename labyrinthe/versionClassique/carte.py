@@ -158,7 +158,8 @@ def mettreTresor(c,tresor):
     c["tresor"]=tresor
     return valeur_intermediaire
 
-assert mettreTresor(c,1)==2
+assert mettreTresor(c,1)==2 # faire attention car ne fonctionne qu'une seule fois car
+                            # après l'on change la valeur de tresor 
 
 def prendrePion(c, pion):
     """
