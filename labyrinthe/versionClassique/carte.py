@@ -104,29 +104,36 @@ def setListePions(c,listePions):
                 listePions: la liste des pions à poser
     Cette fonction ne retourne rien mais modifie la carte
     """
-    pass
+    c["pion"].append(listePions)
 
 def getNbPions(c):
     """
     retourne le nombre de pions se trouvant sur la carte
     paramètre: c une carte
     """
-    pass
+    return len(c["pion"])
+
+assert getNbPions(c)==2
 
 def possedePion(c,pion):
     """
     retourne un booléen indiquant si la carte possède le pion passé en paramètre
     paramètre: c une carte
     """
-    pass
+    res=False
+    if pion in c["pion"]:
+        res=True
+    return res
 
-
+assert possedePion(c,2)==True
 def getTresor(c):
     """
     retourne la valeur du trésor qui se trouve sur la carte (0 si pas de trésor)
     paramètre: c une carte
     """
-    pass
+    return c["tresor"]
+
+assert getTresor(c)==2
 
 def prendreTresor(c):
     """
@@ -134,7 +141,12 @@ def prendreTresor(c):
     paramètre: c une carte
     Cette fonction modifie la carte mais ne retourne rien
     """
-    pass
+    valeur_intermediaire=c["tresor"]
+    c["tresor"]=0
+    return valeur_intermediaire
+
+assert prendreTresor(c)==2
+
 def mettreTresor(c,tresor):
     """
     met le trésor passé en paramètre sur la carte et retourne la valeur de l'ancien trésor
@@ -142,7 +154,11 @@ def mettreTresor(c,tresor):
                 tresor un entier positif
     Cette fonction modifie la carte mais ne retourne rien
     """
-    pass
+    valeur_intermediaire=c["tresor"]
+    c["tresor"]=tresor
+    return valeur_intermediaire
+
+assert mettreTresor(c,1)==2
 
 def prendrePion(c, pion):
     """
