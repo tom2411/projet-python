@@ -159,7 +159,7 @@ def mettreTresor(c,tresor):
     return valeur_intermediaire
 
 assert mettreTresor(c,1)==2 # faire attention car ne fonctionne qu'une seule fois car
-                            # après l'on change la valeur de tresor 
+                            # après l'on change la valeur de tresor
 
 def prendrePion(c, pion):
     """
@@ -168,7 +168,9 @@ def prendrePion(c, pion):
                 pion un entier compris entre 1 et 4
     Cette fonction modifie la carte mais ne retourne rien
     """
-    pass
+    if pion in c["pion"]:
+        c["pion"].remove(pion)
+    #else rien
 
 def poserPion(c, pion):
     """
@@ -177,7 +179,9 @@ def poserPion(c, pion):
                 pion un entier compris entre 1 et 4
     Cette fonction modifie la carte mais ne retourne rien
     """
-    pass
+    if pion not in c["pion"]:
+        c["pion"].append(pion)
+    #else rien
 
 def tournerHoraire(c):
     """
@@ -185,7 +189,7 @@ def tournerHoraire(c):
     paramètres: c une carte
     Cette fonction modifie la carte mais ne retourne rien
     """
-    pass
+    c={"nord":c["ouest"],"est":c["nord"],"sud":c["est"],"ouest":c["sud"],"tresor":c["tresor"],"pion":c["pion"]}
 
 def tournerAntiHoraire(c):
     """
@@ -193,7 +197,8 @@ def tournerAntiHoraire(c):
     paramètres: c une carte
     Cette fonction modifie la carte mais ne retourne rien
     """
-    pass
+    c={"nord":c["est"],"est":c["sud"],"sud":c["ouest"],"ouest":c["nord"],"tresor":c["tresor"],"pion":c["pions"]}
+
 def tourneAleatoire(c):
     """
     faire tourner la carte d'un nombre de tours aléatoire
