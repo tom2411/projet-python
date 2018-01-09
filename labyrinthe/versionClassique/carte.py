@@ -158,7 +158,7 @@ def mettreTresor(c,tresor):
     c["tresor"]=tresor
     return valeur_intermediaire
 
-assert mettreTresor(c,1)==2 # faire attention car ne fonctionne qu'une seule fois car
+#assert mettreTresor(c,1)==2 # faire attention car ne fonctionne qu'une seule fois car
                             # après l'on change la valeur de tresor
 
 def prendrePion(c, pion):
@@ -216,10 +216,29 @@ def coderMurs(c):
     bN est le chiffre des unité, BE des dizaine, etc...
     le code obtenu permet d'obtenir l'indice du caractère semi-graphique
     correspondant à la carte dans la liste listeCartes au début de ce fichier
-    paramètre c une carte
+    paramètre: c est une carte
     retourne un entier indice du caractère semi-graphique de la carte
     """
-    pass
+    res=""
+    if c["nord"]:
+        res+="1"
+    else:
+        res+="0"
+    if c["est"]:
+        res+="1"
+    else:
+        res+="0"
+    if c["sud"]:
+        res+="1"
+    else:
+        res+="0"
+    if c["ouest"]:
+        res+="1"
+    else:
+        res+="0"
+    return int(res,2) # pour convertir une chaine de caractère qui est dans une base spécifique
+
+assert coderMurs(c)==9
 
 def decoderMurs(c,code):
     """
