@@ -220,22 +220,11 @@ def coderMurs(c):
     retourne un entier indice du caractère semi-graphique de la carte
     """
     res=""
-    if c["nord"]:
-        res+="1"
-    else:
-        res+="0"
-    if c["est"]:
-        res+="1"
-    else:
-        res+="0"
-    if c["sud"]:
-        res+="1"
-    else:
-        res+="0"
-    if c["ouest"]:
-        res+="1"
-    else:
-        res+="0"
+    for key in ["nord","est","sud","ouest"]:
+        if c[key]:
+            res+="1"
+        else:
+            res+="0"
     return int(res,2) # pour convertir une chaine de caractère qui est dans une base spécifique
 
 assert coderMurs(c)==9
@@ -247,13 +236,32 @@ def decoderMurs(c,code):
                code un entier codant les murs d'une carte
     Cette fonction modifie la carte mais ne retourne rien
     """
-    pass
+    valeur_binaire=bin(code)
+    liste=list(valeur_binaire)
+    mur=['nord','est','sud','ouest']
+    i=2
+    i1=0
+    while i<len(liste):
+        if liste[i]=='1':
+            c[mur[i1]]=True
+        else:
+            c[mur[i1]]=False
+        i+=1
+        i1+=1
+    return c
+
+exemple=Carte(False,False,False,False,2,[1,2])
+assert decoderMurs(exemple,9)=={"nord":True,"est":False,"sud":False,"ouest":True,"tresor":2,"pion":[1,2]}
+
 def toChar(c):
     """
     fournit le caractère semi graphique correspondant à la carte (voir la variable listeCartes au début de ce script)
     paramètres c une carte
     """
-    pass
+    valeur=coderMurs(c)
+    return listeCartes[valeur]
+
+assert toChar(c)=='╔'
 
 def passageNord(carte1,carte2):
     """
@@ -261,8 +269,18 @@ def passageNord(carte1,carte2):
     s'il y a un passage entre ces deux cartes en passant par le nord
     paramètres carte1 et carte2 deux carte
     résultat un booléen
+    carte2 = sud = False
+    carte1 = nord = False
     """
-    pass
+    res=False
+    if not carte1['nord'] and not carte2['sud']:
+        res=True
+    return res
+
+essaie=Carte(False,True,False,False,2,[1,2])
+essaie2=Carte(True,False,False,False,2,[1,2])
+assert passageNord(essaie,essaie2)==True
+# attention ne pas oublier que False signifie qu'il n'y a pas de mur et True veut dire le contraire
 
 def passageSud(carte1,carte2):
     """

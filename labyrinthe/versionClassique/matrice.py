@@ -89,9 +89,9 @@ def decalageLigneAGauche(matrice, numLig, nouvelleValeur):
                 ligne.remove(ligne[0])
             #else rien
     #else rien
-    return ligne
+    return valeur_rejettee
 
-assert decalageLigneAGauche([[1,2,3],[4,5,6],[7,8,9]],1,5)==[2,3,5]
+assert decalageLigneAGauche([[1,2,3],[4,5,6],[7,8,9]],1,5)==1
 
 def decalageLigneADroite(matrice, numLig, nouvelleValeur):
     """
@@ -111,9 +111,9 @@ def decalageLigneADroite(matrice, numLig, nouvelleValeur):
                 ligne.pop()
             #else rien
     #else rien
-    return ligne
+    return valeur_rejettee
 
-assert decalageLigneADroite([[1,2,3],[4,5,6],[7,8,9]],1,5)==[5,1,2]
+assert decalageLigneADroite([[1,2,3],[4,5,6],[7,8,9]],1,5)==3
 
 def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
     """
