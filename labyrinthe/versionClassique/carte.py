@@ -9,6 +9,7 @@ le caractère 'Ø' indique que l'indice ne correspond pas à une carte
 listeCartes=['╬','╦','╣','╗','╩','═','╝','Ø','╠','╔','║','Ø','╚','Ø','Ø','Ø']
 
 
+
 def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
     """
     permet de créer une carte:
@@ -17,49 +18,84 @@ def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
     tresor est le numéro du trésor qui se trouve sur la carte (0 s'il n'y a pas de trésor)
     pions est la liste des pions qui sont posés sur la carte (un pion est un entier entre 1 et 4)
     """
-    pass
+    dico={"nord":nord,"est":est,"sud":sud,"ouest":ouest,"tresor":tresor,"pion":pions}
+    return dico
+# True=mur
+# False= pas de mur
 
+c=Carte(True,False,False,True,2,[1,2])
 def estValide(c):
     """
-    retourne un booléen indiquant si la carte est valide ou non c'est à dire qu'elle a un ou deux murs
+    retourne un booléen indiquant si la carte est valide ou non c'est à dire qu'elle a zero,un ou deux murs
     paramètre: c une carte
     """
-    pass
+    cpt=0
+    res=True
+    for key in ["nord","est","ouest","sud"]:
+        if c[key]:
+            cpt+=1
+    if cpt>3:
+        res=False
+    return res
+
+assert estValide(c)==True
 
 def murNord(c):
     """
     retourne un booléen indiquant si la carte possède un mur au nord
     paramètre: c une carte
     """
-    pass
+    res=True # True signifie qu'il y a un mur dans la direction
+    if not c["nord"]:
+        res=False
+    return res
+
+assert murNord(c)==True
 
 def murSud(c):
     """
     retourne un booléen indiquant si la carte possède un mur au sud
     paramètre: c une carte
     """
-    pass
+    res=True
+    if not c["sud"]:
+        res=False
+    return res
+
+assert murSud(c)==False
 
 def murEst(c):
     """
     retourne un booléen indiquant si la carte possède un mur à l'est
     paramètre: c une carte
     """
-    pass
+    res=True
+    if not c["est"]:
+        res=False
+    return res
+
+assert murEst(c)==False
 
 def murOuest(c):
     """
     retourne un booléen indiquant si la carte possède un mur à l'ouest
     paramètre: c une carte
     """
-    pass
+    res=True
+    if not c["ouest"]:
+        res=False
+    return res
+
+assert murOuest(c)==True
 
 def getListePions(c):
     """
     retourne la liste des pions se trouvant sur la carte
     paramètre: c une carte
     """
-    pass
+    return c["pion"]
+
+assert getListePions(c)==[1,2]
 
 def setListePions(c,listePions):
     """
@@ -113,7 +149,7 @@ def prendrePion(c, pion):
     enlève le pion passé en paramètre de la carte. Si le pion n'y était pas ne fait rien
     paramètres: c une carte
                 pion un entier compris entre 1 et 4
-    Cette fonction modifie la carte mais ne retourne rien    
+    Cette fonction modifie la carte mais ne retourne rien
     """
     pass
 
@@ -122,7 +158,7 @@ def poserPion(c, pion):
     pose le pion passé en paramètre sur la carte. Si le pion y était déjà ne fait rien
     paramètres: c une carte
                 pion un entier compris entre 1 et 4
-    Cette fonction modifie la carte mais ne retourne rien    
+    Cette fonction modifie la carte mais ne retourne rien
     """
     pass
 
@@ -130,7 +166,7 @@ def tournerHoraire(c):
     """
     fait tourner la carte dans le sens horaire
     paramètres: c une carte
-    Cette fonction modifie la carte mais ne retourne rien    
+    Cette fonction modifie la carte mais ne retourne rien
     """
     pass
 
@@ -138,21 +174,21 @@ def tournerAntiHoraire(c):
     """
     fait tourner la carte dans le sens anti-horaire
     paramètres: c une carte
-    Cette fonction modifie la carte mais ne retourne rien    
+    Cette fonction modifie la carte mais ne retourne rien
     """
     pass
 def tourneAleatoire(c):
     """
     faire tourner la carte d'un nombre de tours aléatoire
     paramètres: c une carte
-    Cette fonction modifie la carte mais ne retourne rien    
+    Cette fonction modifie la carte mais ne retourne rien
     """
     pass
 
 def coderMurs(c):
     """
-    code les murs sous la forme d'un entier dont le codage binaire 
-    est de la forme bNbEbSbO où bN, bE, bS et bO valent 
+    code les murs sous la forme d'un entier dont le codage binaire
+    est de la forme bNbEbSbO où bN, bE, bS et bO valent
        soit 0 s'il n'y a pas de mur dans dans la direction correspondante
        soit 1 s'il y a un mur dans la direction correspondante
     bN est le chiffre des unité, BE des dizaine, etc...
@@ -169,7 +205,7 @@ def decoderMurs(c,code):
     paramètres c une carte
                code un entier codant les murs d'une carte
     Cette fonction modifie la carte mais ne retourne rien
-    """    
+    """
     pass
 def toChar(c):
     """
@@ -210,6 +246,6 @@ def passageEst(carte1,carte2):
     suppose que la carte2 est placée à l'est de la carte1 et indique
     s'il y a un passage entre ces deux cartes en passant par l'est
     paramètres carte1 et carte2 deux carte
-    résultat un booléen    
+    résultat un booléen
     """
     pass
