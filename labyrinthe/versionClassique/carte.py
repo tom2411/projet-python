@@ -289,7 +289,10 @@ def passageSud(carte1,carte2):
     paramètres carte1 et carte2 deux carte
     résultat un booléen
     """
-    pass
+    res=False
+    if not carte1['sud'] and not carte2['nord']:
+        res=True
+    return res
 
 def passageOuest(carte1,carte2):
     """
@@ -298,7 +301,10 @@ def passageOuest(carte1,carte2):
     paramètres carte1 et carte2 deux carte
     résultat un booléen
     """
-    pass
+    res=False
+    if not carte1['ouest'] and not carte2['est']:
+        res=True
+    return res
 
 def passageEst(carte1,carte2):
     """
@@ -307,4 +313,7 @@ def passageEst(carte1,carte2):
     paramètres carte1 et carte2 deux carte
     résultat un booléen
     """
-    pass
+    res=False
+    if not carte1['est'] and not carte2['ouest']:
+        res=True
+    return res
