@@ -9,7 +9,6 @@ le caractère 'Ø' indique que l'indice ne correspond pas à une carte
 listeCartes=['╬','╦','╣','╗','╩','═','╝','Ø','╠','╔','║','Ø','╚','Ø','Ø','Ø']
 
 
-
 def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
     """
     permet de créer une carte:
