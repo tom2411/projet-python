@@ -205,12 +205,14 @@ def tourneAleatoire(c):
     paramètres: c une carte
     Cette fonction modifie la carte mais ne retourne rien
     """
-    liste=[Horaire,AntiHoraire]
-    i=random.randrange(0,len(liste))
-    for i in range(len(liste)):
-        
-
-
+    Nrandom=random.choice(range(5))
+    liste=["Horaire","AntiHoraire"]
+    dirRandom=random.choice(direction)
+    for i in range(Nrandom):
+        if dirRandom=="Horaire":
+            tournerHoraire(c)
+        else:
+            tournerAntiHoraire(c)
 
 def coderMurs(c):
     """
