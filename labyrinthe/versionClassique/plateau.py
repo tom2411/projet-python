@@ -30,7 +30,9 @@ def creerCartesAmovibles(tresorDebut,nbTresors):
                 nbTresors: le nombre total de trésor à créer
     résultat: la liste mélangée aléatoirement des cartes amovibles créees
     """
-    pass
+    # liste=[]
+    # #coder le prg
+    # return liste
 
 def prendreTresorPlateau(plateau,lig,col,numTresor):
     """
@@ -43,7 +45,9 @@ def prendreTresorPlateau(plateau,lig,col,numTresor):
                 numTresor: le numéro du trésor à prendre sur la carte
     resultat: un booléen indiquant si le trésor était bien sur la carte considérée
     """
-    pass
+    # trouve=True
+    # # coder la suite
+    # return trouve
 
 def getCoordonneesTresor(plateau,numTresor):
     """
@@ -53,7 +57,8 @@ def getCoordonneesTresor(plateau,numTresor):
     resultat: un couple d'entier donnant les coordonnées du trésor ou None si
               le trésor n'est pas sur le plateau
     """
-    pass
+    # coder la fonction
+    #return (lig,col)
 
 def getCoordonneesJoueur(plateau,numJoueur):
     """
@@ -63,7 +68,8 @@ def getCoordonneesJoueur(plateau,numJoueur):
     resultat: un couple d'entier donnant les coordonnées du joueur ou None si
               le joueur n'est pas sur le plateau
     """
-    pass
+    #coder la fonction
+    # return (lig,col)
 
 def prendrePionPlateau(plateau,lin,col,numJoueur):
     """
@@ -74,7 +80,8 @@ def prendrePionPlateau(plateau,lin,col,numJoueur):
                 numJoueur: le numéro du joueur qui correspond au pion
     Cette fonction ne retourne rien mais elle modifie le plateau
     """
-    pass
+
+
 def poserPionPlateau(plateau,lin,col,numJoueur):
     """
     met le pion du joueur sur la carte qui se trouve en (lig,col) du plateau
@@ -98,7 +105,9 @@ def accessible(plateau,ligD,colD,ligA,colA):
     résultat: un boolean indiquant s'il existe un chemin entre la case de départ
               et la case d'arrivée
     """
-    pass
+    chemin_sortie=True
+    # coder la fonction
+    return chemin_sortie
 
 def accessibleDist(plateau,ligD,colD,ligA,colA):
     """
@@ -114,4 +123,6 @@ def accessibleDist(plateau,ligD,colD,ligA,colA):
     résultat: une liste de coordonées indiquant un chemin possible entre la case
               de départ et la case d'arrivée
     """
-    pass
+    liste=[]
+    # coder la suite du prg
+    return liste
