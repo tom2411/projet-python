@@ -254,9 +254,11 @@ def coderMurs(c):
 
 exemple=Carte(False,False,False,False,2,[1,2])
 exemple2=Carte(False,True,True,True,0,[])
+exemple3=Carte(True,True,False,False,0,[])
 assert coderMurs(exemple)==0
 assert coderMurs(carte)==9
 assert coderMurs(exemple2)==7
+assert coderMurs(exemple3)==12
 
 def decoderMurs(c,code):
     """
@@ -292,7 +294,6 @@ def toChar(c):
     fournit le caractère semi graphique correspondant à la carte (voir la variable listeCartes au début de ce script)
     paramètres c une carte
     """
-    print(c)
     valeur=coderMurs(c)
     print(valeur)
     return listeCartes[valeur]
@@ -300,6 +301,7 @@ def toChar(c):
 exemple=Carte(False,False,False,False,2,[1,2])
 assert toChar(carte)=='╔'
 assert toChar(exemple)=='╬'
+assert toChar(exemple3)=='╗'
 
 def passageNord(carte1,carte2):
     """

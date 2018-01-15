@@ -39,7 +39,7 @@ def Plateau(nbJoueurs, nbTresors):
                 setVal(matrice,i,j,carte)
     return matrice
 
-
+{'ouest': False, 'pion': [], 'tresor': 0, 'nord': True, 'est': True, 'sud': False}
 
 def creerCartesAmovibles(tresorDebut,nbTresors):
     """
