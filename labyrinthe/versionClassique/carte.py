@@ -268,6 +268,7 @@ def toChar(c):
     return listeCartes[valeur]
 
 assert toChar(c)=='╔'
+assert toChar(exemple)=='╬'
 
 def passageNord(carte1,carte2):
     """

@@ -21,16 +21,23 @@ def Plateau(nbJoueurs, nbTresors):
     listeCartesUtilisable=[4,5,6]
     angle=20
     jonction=18
-    tout-droit=12
+    toutDroit=12
     for i in range(getNbLignes(matrice)):
         for j in range(getNbColonnes(matrice)):
             if (i,j) in dicoCarteFixes:
-                carteAplacer=decoderMurs(carte,dicoCarteFixes[i,j])
+                carteAplacer=decoderMurs(carte,dicoCarteFixes[(i,j)])
                 setVal(matrice,i,j,carteAplacer)
             else:
                 nbRandom=random.choice(listeCartesUtilisable)
+                if nbRandom==4:
+                    jonction-=1
+                elif nbRandom==5:
+                    angle-=1
+                else:
+                    toutDroit-=1
                 carte=decoderMurs(carte,nbRandom)
                 setVal(matrice,i,j,carte)
+    return matrice
 
 
 
