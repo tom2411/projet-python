@@ -18,9 +18,10 @@ def Plateau(nbJoueurs, nbTresors):
     for i in range(getNbLignes(matrice)):
         for j in range(getNbColonnes(matrice)):
             nbRandom=random.choice(liste)
-            setVal(matrice,i,j,decoderMurs(carte,nbRandom))
+            valeur_intermediare=decoderMurs(carte,nbRandom)
 
-
+            setVal(matrice,i,j,tourneAleatoire(valeur_intermediare))
+            print(valeur_intermediare)
 
     return (matrice,0)
 
