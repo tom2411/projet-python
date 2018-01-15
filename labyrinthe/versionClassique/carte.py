@@ -22,7 +22,7 @@ def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
 # True=mur
 # False= pas de mur
 
-c=Carte(True,False,False,True,2,[1,2])
+carte=Carte(True,False,False,True,2,[1,2])
 def estValide(c):
     """
     retourne un booléen indiquant si la carte est valide ou non c'est à dire qu'elle a zero,un ou deux murs
@@ -37,7 +37,7 @@ def estValide(c):
         res=False
     return res
 
-assert estValide(c)==True
+assert estValide(carte)==True
 
 def murNord(c):
     """
@@ -49,7 +49,7 @@ def murNord(c):
         res=False
     return res
 
-assert murNord(c)==True
+assert murNord(carte)==True
 
 def murSud(c):
     """
@@ -61,7 +61,7 @@ def murSud(c):
         res=False
     return res
 
-assert murSud(c)==False
+assert murSud(carte)==False
 
 def murEst(c):
     """
@@ -73,7 +73,7 @@ def murEst(c):
         res=False
     return res
 
-assert murEst(c)==False
+assert murEst(carte)==False
 
 def murOuest(c):
     """
@@ -85,7 +85,7 @@ def murOuest(c):
         res=False
     return res
 
-assert murOuest(c)==True
+assert murOuest(carte)==True
 
 def getListePions(c):
     """
@@ -94,7 +94,7 @@ def getListePions(c):
     """
     return c["pion"]
 
-assert getListePions(c)==[1,2]
+assert getListePions(carte)==[1,2]
 
 def setListePions(c,listePions):
     """
@@ -112,7 +112,7 @@ def getNbPions(c):
     """
     return len(c["pion"])
 
-assert getNbPions(c)==2
+assert getNbPions(carte)==2
 
 def possedePion(c,pion):
     """
@@ -124,7 +124,7 @@ def possedePion(c,pion):
         res=True
     return res
 
-assert possedePion(c,2)==True
+assert possedePion(carte,2)==True
 def getTresor(c):
     """
     retourne la valeur du trésor qui se trouve sur la carte (0 si pas de trésor)
@@ -132,7 +132,7 @@ def getTresor(c):
     """
     return c["tresor"]
 
-assert getTresor(c)==2
+assert getTresor(carte)==2
 
 def prendreTresor(c):
     """
@@ -144,7 +144,7 @@ def prendreTresor(c):
     c["tresor"]=0
     return valeur_intermediaire
 
-assert prendreTresor(c)==2
+assert prendreTresor(carte)==2
 
 def mettreTresor(c,tresor):
     """
@@ -157,7 +157,7 @@ def mettreTresor(c,tresor):
     c["tresor"]=tresor
     return valeur_intermediaire
 
-#assert mettreTresor(c,1)==2 # faire attention car ne fonctionne qu'une seule fois car
+#assert mettreTresor(carte,1)==2 # faire attention car ne fonctionne qu'une seule fois car
                             # après l'on change la valeur de tresor
 
 def prendrePion(c, pion):
@@ -225,15 +225,38 @@ def coderMurs(c):
     paramètre: c est une carte
     retourne un entier indice du caractère semi-graphique de la carte
     """
-    res=""
-    for key in ["nord","est","sud","ouest"]:
-        if c[key]:
-            res+="1"
-        else:
-            res+="0"
-    return int(res,2) # pour convertir une chaine de caractère qui est dans une base spécifique
+    res=''
+    # cle=["nord","est","sud","ouest"]
+    # for i in range(len(cle)) :
+    #     if c[cle[i]]:
+    #         res=res+'1'
+    #     else:
+    #         res=res+'0'
+    #     resultat=int(res,2)
+    # return resultat # pour convertir une chaine de caractère qui est dans une base spécifique
+    if c['nord']:
+        res+='1'
+    else:
+        res+='0'
+    if c['est']:
+        res+='1'
+    else:
+        res+='0'
+    if c['sud']:
+        res+='1'
+    else:
+        res+='0'
+    if c['ouest']:
+        res+='1'
+    else:
+        res+='0'
+    return int(res,2)
 
-assert coderMurs(c)==9
+exemple=Carte(False,False,False,False,2,[1,2])
+exemple2=Carte(False,True,True,True,0,[])
+assert coderMurs(exemple)==0
+assert coderMurs(carte)==9
+assert coderMurs(exemple2)==7
 
 def decoderMurs(c,code):
     """
@@ -244,6 +267,10 @@ def decoderMurs(c,code):
     """
     valeur_binaire=bin(code)
     liste=list(valeur_binaire)
+    i=0+len(liste)
+    while i<6:  # pour que tous les chiffre binaire fasse une liste de 6
+        liste.append(0)
+        i+=1
     mur=['nord','est','sud','ouest']
     i=2
     i1=0
@@ -254,20 +281,24 @@ def decoderMurs(c,code):
             c[mur[i1]]=False
         i+=1
         i1+=1
-    return c
+    return c    # ATTENTION CE PRG CHANGE LE MATRICE DE BASE
 
-exemple=Carte(False,False,False,False,2,[1,2])
+
 assert decoderMurs(exemple,9)=={"nord":True,"est":False,"sud":False,"ouest":True,"tresor":2,"pion":[1,2]}
+assert decoderMurs(exemple2,0)=={"nord":False,"est":False,"sud":False,"ouest":False,"tresor":0,"pion":[]}
 
 def toChar(c):
     """
     fournit le caractère semi graphique correspondant à la carte (voir la variable listeCartes au début de ce script)
     paramètres c une carte
     """
+    print(c)
     valeur=coderMurs(c)
+    print(valeur)
     return listeCartes[valeur]
 
-assert toChar(c)=='╔'
+exemple=Carte(False,False,False,False,2,[1,2])
+assert toChar(carte)=='╔'
 assert toChar(exemple)=='╬'
 
 def passageNord(carte1,carte2):
