@@ -12,18 +12,21 @@ def Plateau(nbJoueurs, nbTresors):
               - la carte amovible qui n'a pas été placée sur le plateau
     """
     matrice=Matrice(7,7,0)
-    #carte_amovible=random.choice(range(15))
-    liste=[4,5,6]
+    # carte fixe
+    dicoCarteFixes={(0,0):9,(0,2):1,(0,4):1,(0,6):3
+                    ,(2,0):8,(2,2):8,(2,4):1,(2,6):2
+                    ,(4,0):8,(4,2):4,(4,4):2,(4,6):2
+                    ,(6,0):12,(6,2):4,(6,4):4,(6,6):6}
     carte=Carte(False,False,False,False,0,[])
+    listeCartesUtilisable=[4,5,6]
     for i in range(getNbLignes(matrice)):
         for j in range(getNbColonnes(matrice)):
-            nbRandom=random.choice(liste)
-            valeur_intermediare=decoderMurs(carte,nbRandom)
-
-            setVal(matrice,i,j,tourneAleatoire(valeur_intermediare))
-            print(valeur_intermediare)
-
-    return (matrice,0)
+            if (i,j) in dicoCarteFixes:
+                carteAplacer=decoderMurs(carte,dicoCarteFixes[i,j])
+                setVal(matrice,i,j,carteAplacer)
+            else:
+                
+    return matrice
 
 def creerCartesAmovibles(tresorDebut,nbTresors):
     """
