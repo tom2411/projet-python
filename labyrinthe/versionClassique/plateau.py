@@ -12,14 +12,17 @@ def Plateau(nbJoueurs, nbTresors):
               - la carte amovible qui n'a pas été placée sur le plateau
     """
     matrice=Matrice(7,7,0)
-    carte_amovible=random.choice(range(15))
+    #carte_amovible=random.choice(range(15))
+    liste=[4,5,6]
+    carte=Carte(False,False,False,False,0,[])
     for i in range(getNbLignes(matrice)):
         for j in range(getNbColonnes(matrice)):
-            nbRandom=random.choice(range(15))
-            setVal(matrice,i,j,nbRandom)
-    return (matrice,carte_amovible)
+            nbRandom=random.choice(liste)
+            setVal(matrice,i,j,decoderMurs(carte,nbRandom))
 
 
+
+    return (matrice,0)
 
 def creerCartesAmovibles(tresorDebut,nbTresors):
     """
