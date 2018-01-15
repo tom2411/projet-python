@@ -196,7 +196,7 @@ def tournerAntiHoraire(c):
     paramètres: c une carte
     Cette fonction modifie la carte mais ne retourne rien
     """
-    c={"nord":c["est"],"est":c["sud"],"sud":c["ouest"],"ouest":c["nord"],"tresor":c["tresor"],"pion":c["pions"]}
+    c={"nord":c["est"],"est":c["sud"],"sud":c["ouest"],"ouest":c["nord"],"tresor":c["tresor"],"pion":c["pion"]}
 
 def tourneAleatoire(c):
     """
@@ -206,7 +206,7 @@ def tourneAleatoire(c):
     """
     Nrandom=random.choice(range(5))
     liste=["Horaire","AntiHoraire"]
-    dirRandom=random.choice(direction)
+    dirRandom=random.choice(liste)
     for i in range(Nrandom):
         if dirRandom=="Horaire":
             tournerHoraire(c)

@@ -13,7 +13,6 @@ def Matrice(nbLignes,nbColonnes,valeurParDefaut=0):
     résultat la matrice ayant les bonnes propriétés
     """
     matrice=[]
-    sousListe=[]
     for i in range(nbLignes):
         matrice.append([valeurParDefaut]*nbColonnes)
     return matrice

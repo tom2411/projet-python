@@ -52,13 +52,13 @@ def prendreTresorPlateau(plateau,lig,col,numTresor):
     # trouve=True
     # # coder la suite
     # return trouve
-		carte_position = getVal(plateau[0],lig,col) #On recupere une carte
-    tresor = getTresor(carte_position) #Le numero du tresor present sur la carte
-    if tresor==numTresor: #Si c'est bien le tresor rechercher
-        res = True
-    else:
-        res = False
-    return res
+	# carte_position = getVal(plateau[0],lig,col) #On recupere une carte
+    # tresor = getTresor(carte_position) #Le numero du tresor present sur la carte
+    # if tresor==numTresor: #Si c'est bien le tresor rechercher
+    #     res = True
+    # else:
+    #     res = False
+    # return res
 
 def getCoordonneesTresor(plateau,numTresor):
     """
@@ -70,22 +70,22 @@ def getCoordonneesTresor(plateau,numTresor):
     """
     # coder la fonction
     #return (lig,col)
-		nbLignes = getNbLignes(plateau[0])
-    nbColonnes = getNbColonnes(plateau[0])
-    iLig = 0
-    iCol = 0
-    res = None
-
-    while (res==None) and (iLig<nbLignes) and (iCol<nbColonnes): #Tant que l'on as pas trouver le tresor et que l'on peut parcourir la matrice
-        tresor_sur_carte_actuel = prendreTresorPlateau(plateau,iLig,iCol,numTresor) #Verifie si le tresor se trouve sur la carte sur laquelle on est
-        if tresor_sur_carte_actuel: #Si le tresor est sur la carte sur laquelle on est
-            res = (iLig,iCol) #On enregistre les coordonnées du trésor
-        else: #Sinon
-            iCol = (iCol+1)%nbColonnes #On passe à la colonne suivante (ou l'on revient au debut des colonnes)
-            if iCol == 0: #Si on est revenus au debut de la colonne
-                iLig += 1 #On passe à la ligne suivante
-
-    return res
+	# nbLignes = getNbLignes(plateau[0])
+    # nbColonnes = getNbColonnes(plateau[0])
+    # iLig = 0
+    # iCol = 0
+    # res = None
+    #
+    # while (res==None) and (iLig<nbLignes) and (iCol<nbColonnes): #Tant que l'on as pas trouver le tresor et que l'on peut parcourir la matrice
+    #     tresor_sur_carte_actuel = prendreTresorPlateau(plateau,iLig,iCol,numTresor) #Verifie si le tresor se trouve sur la carte sur laquelle on est
+    #     if tresor_sur_carte_actuel: #Si le tresor est sur la carte sur laquelle on est
+    #         res = (iLig,iCol) #On enregistre les coordonnées du trésor
+    #     else: #Sinon
+    #         iCol = (iCol+1)%nbColonnes #On passe à la colonne suivante (ou l'on revient au debut des colonnes)
+    #         if iCol == 0: #Si on est revenus au debut de la colonne
+    #             iLig += 1 #On passe à la ligne suivante
+    #
+    # return res
 
 
 def getCoordonneesJoueur(plateau,numJoueur):
@@ -98,22 +98,22 @@ def getCoordonneesJoueur(plateau,numJoueur):
     """
     #coder la fonction
     # return (lig,col)
-nbLignes = getNbLignes(plateau[0])
-    nbColonnes = getNbColonnes(plateau[0])
-    iLig = 0
-    iCol = 0
-    res = None
-
-    while (res==None) and (iLig<nbLignes) and (iCol<nbColonnes): #Tant que l'on as pas trouver le joueur et que l'on peut parcourir la matrice
-        carte_position = getVal(plateau[0],iLig,iCol) #On recupere la carte sur laquelle on est
-        if possedePion(carte_position,numJoueur): #Si le joueur est sur la carte sur laquelle on est
-            res = (iLig,iCol) #On enregistre les coordonnées du joueur
-        else: #Sinon
-            iCol = (iCol+1)%nbColonnes #On passe à la colonne suivante (ou l'on revient au debut des colonnes)
-            if iCol == 0: #Si on est revenus au debut de la colonne
-                iLig += 1 #On passe à la ligne suivante
-
-    return res
+    # nbLignes = getNbLignes(plateau[0])
+    # nbColonnes = getNbColonnes(plateau[0])
+    # iLig = 0
+    # iCol = 0
+    # res = None
+    #
+    # while (res==None) and (iLig<nbLignes) and (iCol<nbColonnes): #Tant que l'on as pas trouver le joueur et que l'on peut parcourir la matrice
+    #     carte_position = getVal(plateau[0],iLig,iCol) #On recupere la carte sur laquelle on est
+    #     if possedePion(carte_position,numJoueur): #Si le joueur est sur la carte sur laquelle on est
+    #         res = (iLig,iCol) #On enregistre les coordonnées du joueur
+    #     else: #Sinon
+    #         iCol = (iCol+1)%nbColonnes #On passe à la colonne suivante (ou l'on revient au debut des colonnes)
+    #         if iCol == 0: #Si on est revenus au debut de la colonne
+    #             iLig += 1 #On passe à la ligne suivante
+    #
+    # return res
 
 def prendrePionPlateau(plateau,lin,col,numJoueur):
     """
@@ -124,8 +124,8 @@ def prendrePionPlateau(plateau,lin,col,numJoueur):
                 numJoueur: le numéro du joueur qui correspond au pion
     Cette fonction ne retourne rien mais elle modifie le plateau
     """
-		carte_position = getVal(plateau[0],lin,col) #On recupere la carte selectionnee
-    prendrePion(carte_position,numJoueur) #Enleve le pion de la carte
+	# carte_position = getVal(plateau[0],lin,col) #On recupere la carte selectionnee
+    # prendrePion(carte_position,numJoueur) #Enleve le pion de la carte
 
 
 def poserPionPlateau(plateau,lin,col,numJoueur):
@@ -137,8 +137,8 @@ def poserPionPlateau(plateau,lin,col,numJoueur):
                 numJoueur: le numéro du joueur qui correspond au pion
     Cette fonction ne retourne rien mais elle modifie le plateau
     """
-    carte_position = getVal(plateau[0],lin,col) #On recupere la carte selectionnee
-    poserPion(carte_position,numJoueur) #Enleve le pion de la carte
+    # carte_position = getVal(plateau[0],lin,col) #On recupere la carte selectionnee
+    # poserPion(carte_position,numJoueur) #Enleve le pion de la carte
 
 
 def accessible(plateau,ligD,colD,ligA,colA):
