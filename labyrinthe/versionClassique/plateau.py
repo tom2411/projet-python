@@ -52,6 +52,13 @@ def prendreTresorPlateau(plateau,lig,col,numTresor):
     # trouve=True
     # # coder la suite
     # return trouve
+		carte_position = getVal(plateau[0],lig,col) #On recupere une carte
+    tresor = getTresor(carte_position) #Le numero du tresor present sur la carte
+    if tresor==numTresor: #Si c'est bien le tresor rechercher
+        res = True
+    else:
+        res = False
+    return res
 
 def getCoordonneesTresor(plateau,numTresor):
     """
