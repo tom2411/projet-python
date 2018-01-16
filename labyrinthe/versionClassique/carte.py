@@ -33,7 +33,7 @@ def estValide(c):
     for key in ["nord","est","ouest","sud"]:
         if c[key]:
             cpt+=1
-    if cpt>3:
+    if cpt>=3:
         res=False
     return res
 
@@ -179,7 +179,7 @@ def poserPion(c, pion):
     Cette fonction modifie la carte mais ne retourne rien
     """
     if pion not in c["pion"]:
-        c["pion"].append(pion)
+        c['pion'].append(pion)
     #else rien
 
 def tournerHoraire(c):
@@ -225,40 +225,44 @@ def coderMurs(c):
     paramètre: c est une carte
     retourne un entier indice du caractère semi-graphique de la carte
     """
-    res=''
-    # cle=["nord","est","sud","ouest"]
-    # for i in range(len(cle)) :
-    #     if c[cle[i]]:
-    #         res=res+'1'
-    #     else:
-    #         res=res+'0'
-    #     resultat=int(res,2)
-    # return resultat # pour convertir une chaine de caractère qui est dans une base spécifique
-    if c['nord']:
-        res+='1'
+    if estValide(c):
+        res=''
+        # cle=["nord","est","sud","ouest"]
+        # for i in range(len(cle)) :
+        #     if c[cle[i]]:
+        #         res=res+'1'
+        #     else:
+        #         res=res+'0'
+        #     resultat=int(res,2)
+        # return resultat # pour convertir une chaine de caractère qui est dans une base spécifique
+        if c['ouest']:
+            res+='1'
+        else:
+            res+='0'
+        if c['sud']:
+            res+='1'
+        else:
+            res+='0'
+        if c['est']:
+            res+='1'
+        else:
+            res+='0'
+        if c['nord']:
+            res+='1'
+        else:
+            res+='0'
+        return int(res,2) # attention BOBSBEBN
     else:
-        res+='0'
-    if c['est']:
-        res+='1'
-    else:
-        res+='0'
-    if c['sud']:
-        res+='1'
-    else:
-        res+='0'
-    if c['ouest']:
-        res+='1'
-    else:
-        res+='0'
-    return int(res,2)
+        return None
+
 
 exemple=Carte(False,False,False,False,2,[1,2])
 exemple2=Carte(False,True,True,True,0,[])
 exemple3=Carte(True,True,False,False,0,[])
 assert coderMurs(exemple)==0
 assert coderMurs(carte)==9
-assert coderMurs(exemple2)==7
-assert coderMurs(exemple3)==12
+assert coderMurs(exemple2)==None
+assert coderMurs(exemple3)==3
 
 def decoderMurs(c,code):
     """
@@ -267,27 +271,34 @@ def decoderMurs(c,code):
                code un entier codant les murs d'une carte
     Cette fonction modifie la carte mais ne retourne rien
     """
-    valeur_binaire=bin(code)
-    liste=list(valeur_binaire)
-    i=0+len(liste)
-    while i<6:  # pour que tous les chiffre binaire fasse une liste de 6
-        liste.append(0)
-        i+=1
-    mur=['nord','est','sud','ouest']
-    i=2
-    i1=0
-    while i<len(liste):
-        if liste[i]=='1':
-            c[mur[i1]]=True
-        else:
-            c[mur[i1]]=False
-        i+=1
-        i1+=1
-    return c    # ATTENTION CE PRG CHANGE LE MATRICE DE BASE
+    # valeur_binaire=code
+    # listeValeurBinaire=list(valeur_binaire)
+    # longueurBin=len(listeValeurBinaire)
+    # while longueurBin<6:
+    #     listeValeurBinaire.insert(2,0)
+    #     longueurBin+=1
+    #     print(listeValeurBinaire)
+    if code[0]=='1':
+        c['ouest']=True
+    else:
+        c['ouest']=False
+    if code[1]=='1':
+        c['sud']=True
+    else:
+        c['sud']=False
+    if code[2]=='1':
+        c['est']=True
+    else:
+        c['est']=False
+    if code[3]=='1':
+        c['nord']=True
+    else:
+        c['nord']=False
+    return c  # ATTENTION CE PRG CHANGE LE MATRICE DE BASE
 
 
-assert decoderMurs(exemple,9)=={"nord":True,"est":False,"sud":False,"ouest":True,"tresor":2,"pion":[1,2]}
-assert decoderMurs(exemple2,0)=={"nord":False,"est":False,"sud":False,"ouest":False,"tresor":0,"pion":[]}
+assert decoderMurs(exemple,'1001')=={"nord":True,"est":False,"sud":False,"ouest":True,"tresor":2,"pion":[1,2]}
+assert decoderMurs(exemple2,'0000')=={"nord":False,"est":False,"sud":False,"ouest":False,"tresor":0,"pion":[]}
 
 def toChar(c):
     """
@@ -295,13 +306,14 @@ def toChar(c):
     paramètres c une carte
     """
     valeur=coderMurs(c)
-    print(valeur)
+    #print(valeur)
     return listeCartes[valeur]
 
 exemple=Carte(False,False,False,False,2,[1,2])
+
 assert toChar(carte)=='╔'
 assert toChar(exemple)=='╬'
-assert toChar(exemple3)=='╗'
+assert toChar(exemple3)=='╗' # ne fonctionne pas
 
 def passageNord(carte1,carte2):
     """

@@ -4,13 +4,13 @@
 
 def Matrice(nbLignes,nbColonnes,valeurParDefaut=0):
     """
-    crée une matrice de nbLignes lignes sur nbColonnes colonnes en mettant
+    Cree une matrice de nbLignes lignes sur nbColonnes colonnes en mettant
     valeurParDefaut dans chacune des cases
-    paramètres:
+    parametres:
       nbLignes un entier strictement positif qui indique le nombre de lignes
       nbColonnes un entier strictement positif qui indique le nombre de colonnes
-      valeurParDefaut la valeur par défaut
-    résultat la matrice ayant les bonnes propriétés
+      valeurParDefaut la valeur par defaut
+    resultat la matrice ayant les bonnes propriétés
     """
     matrice=[]
     for i in range(nbLignes):
