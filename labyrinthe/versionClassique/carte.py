@@ -369,3 +369,12 @@ def passageEst(carte1,carte2):
     if not carte1['est'] and not carte2['ouest']:
         res=True
     return res
+
+def identifiant(c,identifiant):
+    """
+    permet de mettre un indentifiant sur une carte pour qu'elle soit unique
+    """
+    c['id']=identifiant
+    return c
+
+assert identifiant(essaie,3)=={'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 2, 'pion': [1, 2], 'id': 3}

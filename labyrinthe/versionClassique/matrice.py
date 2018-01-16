@@ -14,7 +14,7 @@ def Matrice(nbLignes,nbColonnes,valeurParDefaut=0):
     """
     matrice=[]
     for i in range(nbLignes):
-        matrice.append([valeurParDefaut]*nbColonnes)
+        matrice+=[[valeurParDefaut]*nbColonnes]
     return matrice
 
 assert Matrice(3,3,0)==[[0,0,0],[0,0,0],[0,0,0]]
@@ -59,10 +59,9 @@ def setVal(matrice,ligne,colonne,valeur):
     cette fonction ne retourne rien mais modifie la matrice
     """
     matrice[ligne][colonne]=valeur
-    res=matrice
-    return res
 
-assert setVal([[0,0,0],[0,0,0],[0,0,9]],2,2,5)==[[0,0,0],[0,0,0],[0,0,5]]
+
+
 
 
 #------------------------------------------

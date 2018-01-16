@@ -1,10 +1,6 @@
 from matrice import *
 from carte import *
 
-dicoCarteFixes={(0,0):'1001',(0,2):'0001',(0,4):'0001',(0,6):'0011'
-                ,(2,0):'1000',(2,2):'1000',(2,4):'0001',(2,6):'0010'
-                ,(4,0):'1000',(4,2):'0100',(4,4):'0010',(4,6):'0010'
-                ,(6,0):'1100',(6,2):'0100',(6,4):'0100',(6,6):'0110'}
 
 def Plateau(nbJoueurs, nbTresors):
     """
@@ -18,30 +14,87 @@ def Plateau(nbJoueurs, nbTresors):
     """
     matrice=Matrice(7,7,0)
     # carte fixe
-    dicoCarteFixes={(0,0):'1001',(0,2):'0001',(0,4):'0001',(0,6):'0011'
-                    ,(2,0):'1000',(2,2):'1000',(2,4):'0001',(2,6):'0010'
-                    ,(4,0):'1000',(4,2):'0100',(4,4):'0010',(4,6):'0010'
-                    ,(6,0):'1100',(6,2):'0100',(6,4):'0100',(6,6):'0110'}
+    # dicoCarteFixes={(0,0):'1001',(0,2):'0001',(0,4):'0001',(0,6):'0011'
+    #                 ,(2,0):'1000',(2,2):'1000',(2,4):'0001',(2,6):'0010'
+    #                 ,(4,0):'1000',(4,2):'0100',(4,4):'0010',(4,6):'0010'
+    #                 ,(6,0):'1100',(6,2):'0100',(6,4):'0100',(6,6):'0110'}
+
     carte=Carte(False,False,False,False,0,[])
-    dicoAngle={(0,0):'1001',(0,6):'0011',(6,0):'1100',(6,6):'0110'}
-    numPion=1
+
+    # Cartes fixes
+    c=Carte(True,True,False,False,0,[])
+    setVal(matrice,0,0,c)
+
+    c=Carte(True,False,False,False,0,[])
+    setVal(matrice,0,2,c)
+
+    c=Carte(True,False,False,False,0,[])
+    setVal(matrice,0,4,c)
+
+    c=Carte(True,False,False,True,0,[])
+    setVal(matrice,0,6,c)
+
+    c=Carte(False,False,False,True,0,[])
+    setVal(matrice,2,0,c)
+
+    c=Carte(False,False,False,True,0,[])
+    setVal(matrice,2,2,c)
+
+    c=Carte(True,False,False,False,0,[])
+    setVal(matrice,2,4,c)
+
+    c=Carte(False,True,False,False,0,[])
+    setVal(matrice,2,6,c)
+
+    c=Carte(False,False,False,True,0,[])
+    setVal(matrice,4,0,c)
+
+    c=Carte(False,False,True,False,0,[])
+    setVal(matrice,4,2,c)
+
+    c=Carte(False,False,False,True,0,[])
+    setVal(matrice,4,4,c)
+
+    c=Carte(False,False,False,True,0,[])
+    setVal(matrice,4,6,c)
+
+    c=Carte(False,False,True,True,0,[])
+    setVal(matrice,6,0,c)
+
+    c=Carte(False,False,True,False,0,[])
+    setVal(matrice,6,2,c)
+
+    c=Carte(False,False,True,False,0,[])
+    setVal(matrice,6,4,c)
+
+    c=Carte(False,True,True,False,0,[])
+    setVal(matrice,6,6,c)
+
+
+
+    num=1
+    liste_Angles=['0100']*20
+    liste_Jonctions=['0101']*18
+    liste_tout_droits=['0110']*12
+    liste_cartes_amovibles=liste_Angles+liste_Jonctions+liste_tout_droits
+    # for i in range(getNbLignes(matrice)):
+    #     for j in range(getNbColonnes(matrice)):
+    #         if (i,j) in dicoCarteFixes: # placer les cartes fixes
+    #             carteAplacer=decoderMurs(carte,dicoCarteFixes[(i,j)])
+    #             setVal(matrice,i,j,carteAplacer)
+    #         else:
+    #             random.shuffle(liste_cartes_amovibles)
+    #             for numIndex in liste_cartes_amovibles:  # touner aleatoirement mes cartes amovibles
+    #                 tourneAleatoire(decoderMurs(carte,numIndex))
+    #             nbRandom=random.choice(liste_cartes_amovibles)
+    #             carteAmovible=decoderMurs(carte,nbRandom)
+    #             setVal(matrice,i,j,carteAmovible)
+            # if matrice[0][0]['pion']==[] and nbJoueurs>=1:
+            #     matrice[0][0]['pion'].append(1)
+
     for i in range(getNbLignes(matrice)):
-        for j in range(getNbColonnes(matrice)):
-            if (i,j) in dicoCarteFixes.keys(): # placer les cartes fixes
-                carteAplacer=decoderMurs(carte,dicoCarteFixes[(i,j)])
-                if nbJoueurs==1:
-                    if (i,j)==(0,0):
-                        poserPion=carteAplacer
-                        poserPion['pion']=[numPion]
-                        setVal(matrice,i,j,poserPion)
-                        numPion+=1
-                else:
-                setVal(matrice,i,j,carteAplacer)
-            else: # placer les cartes amovibles
-                liste_Angles=['0100']*20
-                liste_Jonctions=['0101']*18
-                liste_tout_droits=['0110']*12
-                liste_cartes_amovibles=liste_Angles+liste_Jonctions+liste_tout_droits
+        for j in range(getNbColonnes(matrice)): # placement des cartes amovibles
+            if matrice[i][j]==0:
                 random.shuffle(liste_cartes_amovibles)
                 for numIndex in liste_cartes_amovibles:  # touner aleatoirement mes cartes amovibles
                     tourneAleatoire(decoderMurs(carte,numIndex))
@@ -49,9 +102,26 @@ def Plateau(nbJoueurs, nbTresors):
                 carteAmovible=decoderMurs(carte,nbRandom)
                 setVal(matrice,i,j,carteAmovible)
 
+    # place les joueurs selon leur nombre
+    if nbJoueurs>=1:
+        c = getVal(matrice,0,0)
+        setListePions(c,[1])
+    if nbJoueurs>=2:
+        c = getVal(matrice,6,6)
+        setListePions(c,[2])
+    if nbJoueurs>=3:
+        c = getVal(matrice,6,0)
+        setListePions(c,[3])
+    if nbJoueurs==4:
+        c = getVal(matrice,0,6)
+        setListePions(c,[4])
 
+    # place les différents trésors
+    for i in range(getNbLignes(matrice)):
+        for j in range(getNbColonnes(matrice)):
+            
 
-    print(matrice)
+    return matrice
 
 
 
