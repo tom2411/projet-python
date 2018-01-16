@@ -116,12 +116,25 @@ def Plateau(nbJoueurs, nbTresors):
         c = getVal(matrice,0,6)
         setListePions(c,[4])
 
+    liste=list(range(nbTresors))
+    liste.insert(len(liste),len(liste))
+    while len(liste) < 45:
+        liste.append(0)
+
+    random.shuffle(liste)
+    print(liste)
     # place les différents trésors
+
     for i in range(getNbLignes(matrice)):
         for j in range(getNbColonnes(matrice)):
-            
+            if (i,j)!=(0,0) or (i,j)!=(0,6) or (i,j)!=(6,0) or (i,j)!=(6,6):
+                mettreTresor(matrice[i][j],liste[0])
+                liste.remove(liste[0])
 
-    return matrice
+
+
+
+    return (matrice,0)
 
 
 
@@ -152,16 +165,13 @@ def prendreTresorPlateau(plateau,lig,col,numTresor):
                 numTresor: le numéro du trésor à prendre sur la carte
     resultat: un booléen indiquant si le trésor était bien sur la carte considérée
     """
-    # trouve=True
-    # # coder la suite
-    # return trouve
-	# carte_position = getVal(plateau[0],lig,col) #On recupere une carte
-    # tresor = getTresor(carte_position) #Le numero du tresor present sur la carte
-    # if tresor==numTresor: #Si c'est bien le tresor rechercher
-    #     res = True
-    # else:
-    #     res = False
-    # return res
+	coordonneesCarte=getVal(plateau[0],lig,col) #On recupere une carte
+    tresor = getTresor(carte_position) #Le numero du tresor present sur la carte
+    if tresor==numTresor: #Si c'est bien le tresor rechercher
+        res = True
+    else:
+        res = False
+    return res
 
 def getCoordonneesTresor(plateau,numTresor):
     """
@@ -189,7 +199,10 @@ def getCoordonneesTresor(plateau,numTresor):
     #             iLig += 1 #On passe à la ligne suivante
     #
     # return res
-
+    for i in range(getNbLignes(plateau[0])):
+        for j in range(getNbColonnes(plateau[0])):
+            if plateau[0][i][j]['tresor']==numTresor:
+                return (i,j)
 
 def getCoordonneesJoueur(plateau,numJoueur):
     """
@@ -217,6 +230,13 @@ def getCoordonneesJoueur(plateau,numJoueur):
     #             iLig += 1 #On passe à la ligne suivante
     #
     # return res
+    res=None
+    for i in range(getNbLignes(plateau[0])):
+        for j in range(getNbColonnes(plateau[0])):
+            if plateau[0][i][j]['pion']==numJoueur:
+                res=(i,j)
+    return res
+
 
 def prendrePionPlateau(plateau,lin,col,numJoueur):
     """
