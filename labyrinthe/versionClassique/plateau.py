@@ -73,8 +73,8 @@ def Plateau(nbJoueurs, nbTresors):
 
 
 
-    liste_Angles=['0100']*20
-    liste_Jonctions=['0101']*18
+    liste_Angles=['0100']*16
+    liste_Jonctions=['0101']*6
     liste_tout_droits=['0110']*12
     liste_cartes_amovibles=liste_Angles+liste_Jonctions+liste_tout_droits
 
@@ -88,7 +88,10 @@ def Plateau(nbJoueurs, nbTresors):
                     tourneAleatoire(decoderMurs(carte,numIndex))
                 nbRandom=random.choice(liste_cartes_amovibles)
                 carteAmovible=decoderMurs(carte,nbRandom)
+
                 setVal(matrice,i,j,carteAmovible)
+    carteAJouer = Carte(False,False,False,False)
+    decoderMurs(carteAJouer,liste_cartes_amovibles[-1])
 
     # place les joueurs selon leur nombre
     if nbJoueurs>=1:
@@ -151,7 +154,7 @@ def Plateau(nbJoueurs, nbTresors):
         else:
             pass
     print(len(liste))
-    res=(matrice,0)
+    res=(matrice,carteAJouer)
     return res
 
 def creerCartesAmovibles(tresorDebut,nbTresors):
