@@ -298,7 +298,7 @@ def accessible(plateau,ligD,colD,ligA,colA):
     résultat: un boolean indiquant s'il existe un chemin entre la case de départ
               et la case d'arrivée
     """
-    matrice=Matrice(getNbLignes(plateau[0]),getNbColonnes(plateau[0]),0)
+    
 
 
 def accessibleDist(plateau,ligD,colD,ligA,colA):
