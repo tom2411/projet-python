@@ -72,25 +72,12 @@ def Plateau(nbJoueurs, nbTresors):
 
 
 
-    num=1
+
     liste_Angles=['0100']*20
     liste_Jonctions=['0101']*18
     liste_tout_droits=['0110']*12
     liste_cartes_amovibles=liste_Angles+liste_Jonctions+liste_tout_droits
-    # for i in range(getNbLignes(matrice)):
-    #     for j in range(getNbColonnes(matrice)):
-    #         if (i,j) in dicoCarteFixes: # placer les cartes fixes
-    #             carteAplacer=decoderMurs(carte,dicoCarteFixes[(i,j)])
-    #             setVal(matrice,i,j,carteAplacer)
-    #         else:
-    #             random.shuffle(liste_cartes_amovibles)
-    #             for numIndex in liste_cartes_amovibles:  # touner aleatoirement mes cartes amovibles
-    #                 tourneAleatoire(decoderMurs(carte,numIndex))
-    #             nbRandom=random.choice(liste_cartes_amovibles)
-    #             carteAmovible=decoderMurs(carte,nbRandom)
-    #             setVal(matrice,i,j,carteAmovible)
-            # if matrice[0][0]['pion']==[] and nbJoueurs>=1:
-            #     matrice[0][0]['pion'].append(1)
+
 
     for i in range(getNbLignes(matrice)):
         for j in range(getNbColonnes(matrice)): # placement des cartes amovibles
@@ -117,35 +104,8 @@ def Plateau(nbJoueurs, nbTresors):
         c = getVal(matrice,0,6)
         setListePions(c,[4])
 
-    # placement des tresors sur les cartes
 
-    # liste=list(range(1,nbTresors+1))
-    # random.shuffle(liste)
-    # liste_coor_place=[]
-    # limite=getNbLignes(matrice)*getNbColonnes(matrice)
-    # limite_cpt=0
-    # liste_carte_fixes=[]
-    # for i in [0,2,4,6]:
-    #     for j in [0,2,4,6]:
-    #         if (i,j)!=(0,0) and (i,j)!=(0,6) and (i,j)!=(6,0) and (i,j)!=(6,6):
-    #             pass
-    #         else:
-    #             liste_carte_fixes.append((i,j))
-    # random.shuffle(liste_carte_fixes)
-    # print(liste_carte_fixes)
-    #
-    #
-    #
-    #
-    # while limite_cpt<limite and liste:
-    #     i=random.randint(0,getNbLignes(matrice))
-    #     j=random.randint(0,getNbColonnes(matrice))
-    #     if (i,j) not in liste_coor_place and (i,j)!=(0,0) and (i,j)!=(0,6) and (i,j)!=(6,0) and (i,j)!=(6,6) :
-    #         mettreTresor(matrice[i][j],liste[0])
-    #         liste.remove(liste[0])
-    #         liste_coor_place.append((i,j))
-    #     limite_cpt+=1
-    liste=list(range(1,nbTresors+1))
+    liste=list(range(1,nbTresors+1)) # liste qui contient les tresors
     print(liste)
     random.shuffle(liste)
     liste_carte_fixes=[]
@@ -158,6 +118,7 @@ def Plateau(nbJoueurs, nbTresors):
     random.shuffle(liste_carte_fixes)
     #print(liste_carte_fixes)
 
+    # creation d'une liste qui contient les coordonnées des cartes amovibles
     liste_carte_Amovibles=[]
     for i in [1,3,5]:
         for j in [0,1,2,3,4,5,6]:
@@ -165,28 +126,23 @@ def Plateau(nbJoueurs, nbTresors):
     random.shuffle(liste_carte_Amovibles)
     print(liste_carte_Amovibles)
 
+    # placement des tresors sur les cartes
     i=0
     j=0
-    liste_cpt=0
     while i<getNbLignes(matrice) and j<getNbColonnes(matrice) and len(liste)>0:
         if (i,j) in liste_carte_fixes:
             mettreTresor(matrice[i][j],liste[0])
-
             liste_carte_fixes.remove((i,j))
             liste.remove(liste[0])
             print(liste)
             j+=1
-            liste_cpt+=1
             if j==getNbColonnes(matrice):
                 j=0
                 i+=1
         elif (i,j) in liste_carte_Amovibles:
             mettreTresor(matrice[i][j],liste[0])
             #liste_carte_Amovibles.remove((i,j))
-
             del liste_carte_Amovibles[liste_carte_Amovibles.index((i,j))]
-
-
             liste.remove(liste[0])
         j+=1
         if j==getNbColonnes(matrice):
@@ -195,18 +151,8 @@ def Plateau(nbJoueurs, nbTresors):
         else:
             pass
     print(len(liste))
-
-
-
-
-
     res=(matrice,0)
     return res
-
-
-
-
-
 
 def creerCartesAmovibles(tresorDebut,nbTresors):
     """
