@@ -6,7 +6,7 @@ def Plateau(nbJoueurs, nbTresors):
     """
     créer un nouveau plateau contenant nbJoueurs et nbTrésors
     parametres: nbJoueurs le nombre de joueurs (un nombre entre 1 et 4)
-                nbTresors le nombre de trésor à placer (un nombre entre 1 et 49)
+                nbTresors le nombre de trésor à placer (un nombre entre 12 et 49)
     resultat: un couple contenant
               - une matrice de taille 7x7 représentant un plateau de labyrinthe où les cartes
                 ont été placée de manière aléatoire
@@ -19,10 +19,10 @@ def Plateau(nbJoueurs, nbTresors):
     #                 ,(4,0):'1000',(4,2):'0100',(4,4):'0010',(4,6):'0010'
     #                 ,(6,0):'1100',(6,2):'0100',(6,4):'0100',(6,6):'0110'}
 
-    carte=Carte(False,False,False,False,0,[])
+    # carte=Carte(False,False,False,False,0,[])
 
     # Cartes fixes
-    c=Carte(True,True,False,False,0,[])
+    c=Carte(True,False,False,True,0,[])
     setVal(matrice,0,0,c)
 
     c=Carte(True,False,False,False,0,[])
@@ -31,7 +31,7 @@ def Plateau(nbJoueurs, nbTresors):
     c=Carte(True,False,False,False,0,[])
     setVal(matrice,0,4,c)
 
-    c=Carte(True,False,False,True,0,[])
+    c=Carte(True,True,False,False,0,[])
     setVal(matrice,0,6,c)
 
     c=Carte(False,False,False,True,0,[])
@@ -97,6 +97,7 @@ def Plateau(nbJoueurs, nbTresors):
             if matrice[i][j]==0:
                 random.shuffle(liste_cartes_amovibles)
                 for numIndex in liste_cartes_amovibles:  # touner aleatoirement mes cartes amovibles
+                    carte=Carte(False,False,False,False,0,[])
                     tourneAleatoire(decoderMurs(carte,numIndex))
                 nbRandom=random.choice(liste_cartes_amovibles)
                 carteAmovible=decoderMurs(carte,nbRandom)
@@ -116,25 +117,91 @@ def Plateau(nbJoueurs, nbTresors):
         c = getVal(matrice,0,6)
         setListePions(c,[4])
 
-    liste=list(range(nbTresors))
-    liste.insert(len(liste),len(liste))
-    while len(liste) < 45:
-        liste.append(0)
+    # placement des tresors sur les cartes
 
-    random.shuffle(liste)
+    # liste=list(range(1,nbTresors+1))
+    # random.shuffle(liste)
+    # liste_coor_place=[]
+    # limite=getNbLignes(matrice)*getNbColonnes(matrice)
+    # limite_cpt=0
+    # liste_carte_fixes=[]
+    # for i in [0,2,4,6]:
+    #     for j in [0,2,4,6]:
+    #         if (i,j)!=(0,0) and (i,j)!=(0,6) and (i,j)!=(6,0) and (i,j)!=(6,6):
+    #             pass
+    #         else:
+    #             liste_carte_fixes.append((i,j))
+    # random.shuffle(liste_carte_fixes)
+    # print(liste_carte_fixes)
+    #
+    #
+    #
+    #
+    # while limite_cpt<limite and liste:
+    #     i=random.randint(0,getNbLignes(matrice))
+    #     j=random.randint(0,getNbColonnes(matrice))
+    #     if (i,j) not in liste_coor_place and (i,j)!=(0,0) and (i,j)!=(0,6) and (i,j)!=(6,0) and (i,j)!=(6,6) :
+    #         mettreTresor(matrice[i][j],liste[0])
+    #         liste.remove(liste[0])
+    #         liste_coor_place.append((i,j))
+    #     limite_cpt+=1
+    liste=list(range(1,nbTresors+1))
     print(liste)
-    # place les différents trésors
+    random.shuffle(liste)
+    liste_carte_fixes=[]
+    for i in [0,2,4,6]: # creation de la liste de carte fixes sans les angles
+        for j in [0,2,4,6]:
+            if (i,j)==(0,0) or (i,j)==(0,6) or (i,j)==(6,0) or (i,j)==(6,6):
+                continue
+            else:
+                liste_carte_fixes.append((i,j))
+    random.shuffle(liste_carte_fixes)
+    #print(liste_carte_fixes)
 
-    for i in range(getNbLignes(matrice)):
-        for j in range(getNbColonnes(matrice)):
-            if (i,j)!=(0,0) or (i,j)!=(0,6) or (i,j)!=(6,0) or (i,j)!=(6,6):
-                mettreTresor(matrice[i][j],liste[0])
-                liste.remove(liste[0])
+    liste_carte_Amovibles=[]
+    for i in [1,3,5]:
+        for j in [0,1,2,3,4,5,6]:
+            liste_carte_Amovibles.append((i,j))
+    random.shuffle(liste_carte_Amovibles)
+    print(liste_carte_Amovibles)
+
+    i=0
+    j=0
+    liste_cpt=0
+    while i<getNbLignes(matrice) and j<getNbColonnes(matrice) and len(liste)>0:
+        if (i,j) in liste_carte_fixes:
+            mettreTresor(matrice[i][j],liste[0])
+
+            liste_carte_fixes.remove((i,j))
+            liste.remove(liste[0])
+            print(liste)
+            j+=1
+            liste_cpt+=1
+            if j==getNbColonnes(matrice):
+                j=0
+                i+=1
+        elif (i,j) in liste_carte_Amovibles:
+            mettreTresor(matrice[i][j],liste[0])
+            #liste_carte_Amovibles.remove((i,j))
+
+            del liste_carte_Amovibles[liste_carte_Amovibles.index((i,j))]
+
+
+            liste.remove(liste[0])
+        j+=1
+        if j==getNbColonnes(matrice):
+            j=0
+            i+=1
+        else:
+            pass
+    print(len(liste))
 
 
 
 
-    return (matrice,0)
+
+    res=(matrice,0)
+    return res
 
 
 
@@ -165,13 +232,13 @@ def prendreTresorPlateau(plateau,lig,col,numTresor):
                 numTresor: le numéro du trésor à prendre sur la carte
     resultat: un booléen indiquant si le trésor était bien sur la carte considérée
     """
-	coordonneesCarte=getVal(plateau[0],lig,col) #On recupere une carte
-    tresor = getTresor(carte_position) #Le numero du tresor present sur la carte
-    if tresor==numTresor: #Si c'est bien le tresor rechercher
-        res = True
-    else:
-        res = False
-    return res
+	# coordonneesCarte=getVal(plateau[0],lig,col)
+    # tresor=getTresor(carte_position)
+    # if tresor==numTresor:
+    #     res = True
+    # else:
+    #     res = False
+    # return res
 
 def getCoordonneesTresor(plateau,numTresor):
     """
@@ -296,3 +363,34 @@ def accessibleDist(plateau,ligD,colD,ligA,colA):
     liste=[]
     # coder la suite du prg
     return liste
+
+def affichePlateau(plateau):
+    """
+    affichage redimentaire d'un plateau
+    """
+    remplissage=' '*30
+    print(remplissage,end='')
+    for i in range(1,7,2):
+        print(" "+str(i),sep='',end='')
+    print()
+    for i in range(getNbLignes(plateau)):
+        print(remplissage,end='')
+        if i%2==0:
+            print(' ',sep='',end='')
+        else:
+            print(str(i),sep='',end='')
+        for j in range(getNbColonnes(plateau)):
+            print(toChar(getVal(plateau,i,j)),end='')
+        if i%2==0:
+            print(' ',sep='',end='')
+        else:
+            print(str(i),sep='',end='')
+        print()
+    print(' ',sep='',end='')
+    print(remplissage,end='')
+    for i in range(1,7,2):
+        print(" "+str(i),sep='',end='')
+    print()
+
+(p,_)=Plateau(2, 12)
+affichePlateau(p)
