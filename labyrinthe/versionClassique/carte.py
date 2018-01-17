@@ -44,10 +44,7 @@ def murNord(c):
     retourne un booléen indiquant si la carte possède un mur au nord
     paramètre: c une carte
     """
-    res=True # True signifie qu'il y a un mur dans la direction
-    if not c["nord"]:
-        res=False
-    return res
+    return c['nord']
 
 assert murNord(carte)==True
 
@@ -56,10 +53,7 @@ def murSud(c):
     retourne un booléen indiquant si la carte possède un mur au sud
     paramètre: c une carte
     """
-    res=True
-    if not c["sud"]:
-        res=False
-    return res
+    return c['sud']
 
 assert murSud(carte)==False
 
@@ -68,10 +62,7 @@ def murEst(c):
     retourne un booléen indiquant si la carte possède un mur à l'est
     paramètre: c une carte
     """
-    res=True
-    if not c["est"]:
-        res=False
-    return res
+    return c['est']
 
 assert murEst(carte)==False
 
@@ -80,10 +71,7 @@ def murOuest(c):
     retourne un booléen indiquant si la carte possède un mur à l'ouest
     paramètre: c une carte
     """
-    res=True
-    if not c["ouest"]:
-        res=False
-    return res
+    return c['ouest']
 
 assert murOuest(carte)==True
 
@@ -151,7 +139,7 @@ def mettreTresor(c,tresor):
     met le trésor passé en paramètre sur la carte et retourne la valeur de l'ancien trésor
     paramètres: c une carte
                 tresor un entier positif
-    Cette fonction modifie la carte mais ne retourne rien
+    Cette fonction modifie la carte maisc["ouest"] ne retourne rien
     """
     valeur_intermediaire=c["tresor"]
     c["tresor"]=tresor
@@ -179,7 +167,7 @@ def poserPion(c, pion):
     Cette fonction modifie la carte mais ne retourne rien
     """
     if pion not in c["pion"]:
-        c['pion'].append(pion)
+        c['pion']=c['pion']+[pion]
     #else rien
 
 def tournerHoraire(c):
@@ -188,7 +176,20 @@ def tournerHoraire(c):
     paramètres: c une carte
     Cette fonction modifie la carte mais ne retourne rien
     """
-    c={"nord":c["ouest"],"est":c["nord"],"sud":c["est"],"ouest":c["sud"],"tresor":c["tresor"],"pion":c["pion"]}
+    # ouest=murOuest(c)
+    # nord=murNord(c)
+    # sud=murSud(c)
+    # est=murEst(c)
+    d=dict(c)
+    c['nord']=d['ouest']
+    c["est"]=d['nord']
+    c["sud"]=d['est']
+    c["ouest"]=d['sud']
+
+
+carte3=Carte(False,True,False,False,0,[]) # ╣
+tournerHoraire(carte3)
+assert carte3=={"nord":False,"est":False,"sud":True,"ouest":False,"tresor":0,"pion":[]}
 
 def tournerAntiHoraire(c):
     """
@@ -196,8 +197,11 @@ def tournerAntiHoraire(c):
     paramètres: c une carte
     Cette fonction modifie la carte mais ne retourne rien
     """
-    c={"nord":c["est"],"est":c["sud"],"sud":c["ouest"],"ouest":c["nord"],"tresor":c["tresor"],"pion":c["pion"]}
-
+    d=dict(c)
+    c['nord']=d['est']
+    c["est"]=d['sud']
+    c["sud"]=d['ouest']
+    c["ouest"]=d['nord']
 def tourneAleatoire(c):
     """
     faire tourner la carte d'un nombre de tours aléatoire

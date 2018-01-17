@@ -78,18 +78,19 @@ def Plateau(nbJoueurs, nbTresors):
     liste_tout_droits=['0110']*12
     liste_cartes_amovibles=liste_Angles+liste_Jonctions+liste_tout_droits
 
-
+    random.shuffle(liste_cartes_amovibles)
+    cartesPlacees=0
     for i in range(getNbLignes(matrice)):
         for j in range(getNbColonnes(matrice)): # placement des cartes amovibles
             if matrice[i][j]==0:
-                random.shuffle(liste_cartes_amovibles)
-                for numIndex in liste_cartes_amovibles:  # touner aleatoirement mes cartes amovibles
-                    carte=Carte(False,False,False,False,0,[])
-                    tourneAleatoire(decoderMurs(carte,numIndex))
-                nbRandom=random.choice(liste_cartes_amovibles)
-                carteAmovible=decoderMurs(carte,nbRandom)
 
-                setVal(matrice,i,j,carteAmovible)
+                carte=Carte(False,False,False,False,0,[])
+                carte=decoderMurs(carte,liste_cartes_amovibles[cartesPlacees])
+                tourneAleatoire(carte)
+                print(cartesPlacees,carte,toChar(carte))
+                cartesPlacees+=1
+                # tourneAleatoire(carteAmovible)
+                setVal(matrice,i,j,carte)
     carteAJouer = Carte(False,False,False,False)
     decoderMurs(carteAJouer,liste_cartes_amovibles[-1])
 
@@ -181,13 +182,14 @@ def prendreTresorPlateau(plateau,lig,col,numTresor):
                 numTresor: le numéro du trésor à prendre sur la carte
     resultat: un booléen indiquant si le trésor était bien sur la carte considérée
     """
-	# coordonneesCarte=getVal(plateau[0],lig,col)
-    # tresor=getTresor(carte_position)
-    # if tresor==numTresor:
-    #     res = True
-    # else:
-    #     res = False
-    # return res
+
+    coordonneesCarte=getVal(plateau[0],lig,col)
+    tresor=getTresor(coordonneesCarte)
+    if tresor==numTresor:
+        res=True
+    else:
+        res=False
+    return res
 
 def getCoordonneesTresor(plateau,numTresor):
     """
@@ -215,10 +217,13 @@ def getCoordonneesTresor(plateau,numTresor):
     #             iLig += 1 #On passe à la ligne suivante
     #
     # return res
+    res=None
     for i in range(getNbLignes(plateau[0])):
         for j in range(getNbColonnes(plateau[0])):
             if plateau[0][i][j]['tresor']==numTresor:
-                return (i,j)
+                res=(i,j)
+    return res
+
 
 def getCoordonneesJoueur(plateau,numJoueur):
     """
@@ -265,7 +270,8 @@ def prendrePionPlateau(plateau,lin,col,numJoueur):
     """
 	# carte_position = getVal(plateau[0],lin,col) #On recupere la carte selectionnee
     # prendrePion(carte_position,numJoueur) #Enleve le pion de la carte
-
+    joueur=getVal(plateau[0],lin,col)
+    prendrePion(joueur,numJoueur)
 
 def poserPionPlateau(plateau,lin,col,numJoueur):
     """
@@ -278,7 +284,8 @@ def poserPionPlateau(plateau,lin,col,numJoueur):
     """
     # carte_position = getVal(plateau[0],lin,col) #On recupere la carte selectionnee
     # poserPion(carte_position,numJoueur) #Enleve le pion de la carte
-
+    joueur=getVal(plateau[0],lin,col)
+    poserPion(joueur,numJoueur)
 
 def accessible(plateau,ligD,colD,ligA,colA):
     """
@@ -291,9 +298,8 @@ def accessible(plateau,ligD,colD,ligA,colA):
     résultat: un boolean indiquant s'il existe un chemin entre la case de départ
               et la case d'arrivée
     """
-    chemin_sortie=True
-    # coder la fonction
-    return chemin_sortie
+    matrice=Matrice(getNbLignes(plateau[0]),getNbColonnes(plateau[0]),0)
+
 
 def accessibleDist(plateau,ligD,colD,ligA,colA):
     """
@@ -317,29 +323,12 @@ def affichePlateau(plateau):
     """
     affichage redimentaire d'un plateau
     """
-    remplissage=' '*30
-    print(remplissage,end='')
-    for i in range(1,7,2):
-        print(" "+str(i),sep='',end='')
-    print()
-    for i in range(getNbLignes(plateau)):
-        print(remplissage,end='')
-        if i%2==0:
-            print(' ',sep='',end='')
-        else:
-            print(str(i),sep='',end='')
-        for j in range(getNbColonnes(plateau)):
-            print(toChar(getVal(plateau,i,j)),end='')
-        if i%2==0:
-            print(' ',sep='',end='')
-        else:
-            print(str(i),sep='',end='')
-        print()
-    print(' ',sep='',end='')
-    print(remplissage,end='')
-    for i in range(1,7,2):
-        print(" "+str(i),sep='',end='')
-    print()
 
-(p,_)=Plateau(2, 12)
-affichePlateau(p)
+    for i in range(getNbLignes(plateau[0])):
+        res=' '
+        for j in range(getNbLignes(plateau[0][i])) :
+            res+=toChar(plateau[0][i][j])
+        print(res)
+
+# (p,_)=Plateau(2, 12)
+# affichePlateau(p)
