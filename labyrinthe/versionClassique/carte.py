@@ -23,6 +23,7 @@ def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
 # False= pas de mur
 
 carte=Carte(True,False,False,True,2,[1,2])
+assert Carte(True,False,False,True,2,[1,2])=={"nord":True,"est":False,"sud":False,"ouest":True,"tresor":2,"pion":[1,2]}
 def estValide(c):
     """
     retourne un booléen indiquant si la carte est valide ou non c'est à dire qu'elle a zero,un ou deux murs
@@ -158,6 +159,9 @@ def prendrePion(c, pion):
     if pion in c["pion"]:
         c["pion"].remove(pion)
     #else rien
+test=Carte(True,False,True,False,0,[1])
+prendrePion(test,1)
+assert test==Carte(True,False,True,False,0,[])
 
 def poserPion(c, pion):
     """
@@ -169,6 +173,9 @@ def poserPion(c, pion):
     if pion not in c["pion"]:
         c['pion']=c['pion']+[pion]
     #else rien
+test1=Carte(True,False,False,False,0,[1])
+poserPion(test1,2)
+assert test1==Carte(True,False,False,False,0,[1,2])
 
 def tournerHoraire(c):
     """
@@ -202,6 +209,11 @@ def tournerAntiHoraire(c):
     c["est"]=d['sud']
     c["sud"]=d['ouest']
     c["ouest"]=d['nord']
+
+test2=Carte(True,False,False,False,0,[])
+tournerAntiHoraire(test2)
+assert test2==Carte(False,False,False,True,0,[])
+
 def tourneAleatoire(c):
     """
     faire tourner la carte d'un nombre de tours aléatoire
@@ -317,7 +329,7 @@ exemple=Carte(False,False,False,False,2,[1,2])
 
 assert toChar(carte)=='╔'
 assert toChar(exemple)=='╬'
-assert toChar(exemple3)=='╗' # ne fonctionne pas
+assert toChar(exemple3)=='╗'
 
 def passageNord(carte1,carte2):
     """
@@ -350,6 +362,10 @@ def passageSud(carte1,carte2):
         res=True
     return res
 
+test3=Carte(False,False,True,True,0,[])
+test4=Carte(False,True,False,True,0,[])
+assert passageSud(test3,test4)==False
+
 def passageOuest(carte1,carte2):
     """
     suppose que la carte2 est placée à l'ouest de la carte1 et indique
@@ -362,6 +378,8 @@ def passageOuest(carte1,carte2):
         res=True
     return res
 
+assert passageOuest(test3,test4)==False
+
 def passageEst(carte1,carte2):
     """
     suppose que la carte2 est placée à l'est de la carte1 et indique
@@ -373,6 +391,9 @@ def passageEst(carte1,carte2):
     if not carte1['est'] and not carte2['ouest']:
         res=True
     return res
+
+assert passageEst(test3,test4)==False
+
 
 def identifiant(c,identifiant):
     """
