@@ -1,6 +1,7 @@
 from matrice import *
 from carte import *
 
+a = ([[{'nord': True, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': [[1]]}, {'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 2, 'pion': []}, {'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 1, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}], [{'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}], [{'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}], [{'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}], [{'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}], [{'nord': False, 'est': True, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}], [{'nord': False, 'est': False, 'sud': True, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': [[2]]}]], {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []})
 
 def Plateau(nbJoueurs, nbTresors):
     """
@@ -167,9 +168,7 @@ def creerCartesAmovibles(tresorDebut,nbTresors):
                 nbTresors: le nombre total de trésor à créer
     résultat: la liste mélangée aléatoirement des cartes amovibles créees
     """
-    # liste=[]
-    # #coder le prg
-    # return liste
+
 
 def prendreTresorPlateau(plateau,lig,col,numTresor):
     """
@@ -191,6 +190,8 @@ def prendreTresorPlateau(plateau,lig,col,numTresor):
         res=False
     return res
 
+assert prendreTresorPlateau(a,3,3,1)==False
+
 def getCoordonneesTresor(plateau,numTresor):
     """
     retourne les coordonnées sous la forme (lig,col) du trésor passé en paramètre
@@ -199,24 +200,7 @@ def getCoordonneesTresor(plateau,numTresor):
     resultat: un couple d'entier donnant les coordonnées du trésor ou None si
               le trésor n'est pas sur le plateau
     """
-    # coder la fonction
-    #return (lig,col)
-	# nbLignes = getNbLignes(plateau[0])
-    # nbColonnes = getNbColonnes(plateau[0])
-    # iLig = 0
-    # iCol = 0
-    # res = None
-    #
-    # while (res==None) and (iLig<nbLignes) and (iCol<nbColonnes): #Tant que l'on as pas trouver le tresor et que l'on peut parcourir la matrice
-    #     tresor_sur_carte_actuel = prendreTresorPlateau(plateau,iLig,iCol,numTresor) #Verifie si le tresor se trouve sur la carte sur laquelle on est
-    #     if tresor_sur_carte_actuel: #Si le tresor est sur la carte sur laquelle on est
-    #         res = (iLig,iCol) #On enregistre les coordonnées du trésor
-    #     else: #Sinon
-    #         iCol = (iCol+1)%nbColonnes #On passe à la colonne suivante (ou l'on revient au debut des colonnes)
-    #         if iCol == 0: #Si on est revenus au debut de la colonne
-    #             iLig += 1 #On passe à la ligne suivante
-    #
-    # return res
+
     res=None
     for i in range(getNbLignes(plateau[0])):
         for j in range(getNbColonnes(plateau[0])):
@@ -224,6 +208,7 @@ def getCoordonneesTresor(plateau,numTresor):
                 res=(i,j)
     return res
 
+assert getCoordonneesTresor(a,1)==(0,4)
 
 def getCoordonneesJoueur(plateau,numJoueur):
     """
@@ -233,30 +218,16 @@ def getCoordonneesJoueur(plateau,numJoueur):
     resultat: un couple d'entier donnant les coordonnées du joueur ou None si
               le joueur n'est pas sur le plateau
     """
-    #coder la fonction
-    # return (lig,col)
-    # nbLignes = getNbLignes(plateau[0])
-    # nbColonnes = getNbColonnes(plateau[0])
-    # iLig = 0
-    # iCol = 0
-    # res = None
-    #
-    # while (res==None) and (iLig<nbLignes) and (iCol<nbColonnes): #Tant que l'on as pas trouver le joueur et que l'on peut parcourir la matrice
-    #     carte_position = getVal(plateau[0],iLig,iCol) #On recupere la carte sur laquelle on est
-    #     if possedePion(carte_position,numJoueur): #Si le joueur est sur la carte sur laquelle on est
-    #         res = (iLig,iCol) #On enregistre les coordonnées du joueur
-    #     else: #Sinon
-    #         iCol = (iCol+1)%nbColonnes #On passe à la colonne suivante (ou l'on revient au debut des colonnes)
-    #         if iCol == 0: #Si on est revenus au debut de la colonne
-    #             iLig += 1 #On passe à la ligne suivante
-    #
-    # return res
+
     res=None
     for i in range(getNbLignes(plateau[0])):
         for j in range(getNbColonnes(plateau[0])):
-            if plateau[0][i][j]['pion']==numJoueur:
-                res=(i,j)
+            if len(plateau[0][i][j]['pion'])!=0:
+                if numJoueur in plateau[0][i][j]['pion'][0]:
+                    res=(i,j)
     return res
+
+assert getCoordonneesJoueur(a,1)==(0,0)
 
 
 def prendrePionPlateau(plateau,lin,col,numJoueur):
@@ -268,10 +239,11 @@ def prendrePionPlateau(plateau,lin,col,numJoueur):
                 numJoueur: le numéro du joueur qui correspond au pion
     Cette fonction ne retourne rien mais elle modifie le plateau
     """
-	# carte_position = getVal(plateau[0],lin,col) #On recupere la carte selectionnee
-    # prendrePion(carte_position,numJoueur) #Enleve le pion de la carte
+
     joueur=getVal(plateau[0],lin,col)
     prendrePion(joueur,numJoueur)
+
+
 
 def poserPionPlateau(plateau,lin,col,numJoueur):
     """
@@ -282,8 +254,7 @@ def poserPionPlateau(plateau,lin,col,numJoueur):
                 numJoueur: le numéro du joueur qui correspond au pion
     Cette fonction ne retourne rien mais elle modifie le plateau
     """
-    # carte_position = getVal(plateau[0],lin,col) #On recupere la carte selectionnee
-    # poserPion(carte_position,numJoueur) #Enleve le pion de la carte
+
     joueur=getVal(plateau[0],lin,col)
     poserPion(joueur,numJoueur)
 
@@ -301,15 +272,20 @@ def marquageDirect(calque,plateau,val=1,marque=1):
              0,0,0,0,0,0,0,
              0,0,0,0,0,0,0]
     '''
-    
+
     res=False
     for i in range(getNbLignes(calque)):
         for j in range(getNbColonnes(calque)):
-            if j>0 and passageOuest(plateau[0][i][j],plateau[0][i][j-1]) or j<getNbColonnes(plateau[0])-1 and passageEst(plateau[0][i][j],plateau[0][i][j+1]) or i>0 and passageNord(plateau[0][i][j],plateau[0][i-1][j]) or i<getNbLignes(plateau[0])-1 and passageSud(plateau[0][i][j],plateau[0][i+1][j]):
-                if i>0 and getVal(calque,i-1,j)==val and passageNord(plateau[0][i][j],plateau[0][i-1][j]) or j>0 and getVal(calque,i,j-1)==val and passageOuest(plateau[0][i][j],plateau[0][i][j-1]) or i<getNbLignes(plateau[0])-1 and getVal(calque,i+1,j)==val  and passageSud(plateau[0][i][j],plateau[0][i+1][j]) or j<getNbColonnes(plateau[0])-1 and getVal(calque,i,j+1)==val and passageEst(plateau[0][i][j],plateau[0][i][j+1]):
+            if (j>0 and passageOuest(plateau[0][i][j],plateau[0][i][j-1]) or j<getNbColonnes(plateau[0])-1
+            and passageEst(plateau[0][i][j],plateau[0][i][j+1]) or i>0 and passageNord(plateau[0][i][j],plateau[0][i-1][j]) or i<getNbLignes(plateau[0])-1
+            and passageSud(plateau[0][i][j],plateau[0][i+1][j])):
+                if (i>0 and getVal(calque,i-1,j)==val and passageNord(plateau[0][i][j],plateau[0][i-1][j]) or j>0 and getVal(calque,i,j-1)==val
+                and passageOuest(plateau[0][i][j],plateau[0][i][j-1]) or i<getNbLignes(plateau[0])-1 and getVal(calque,i+1,j)==val
+                and passageSud(plateau[0][i][j],plateau[0][i+1][j]) or j<getNbColonnes(plateau[0])-1 and getVal(calque,i,j+1)==val and passageEst(plateau[0][i][j],plateau[0][i][j+1])):
                     if getVal(calque,i,j)!=marque:
                         setVal(calque,i,j,marque)
                         res=True
+
     return (res,marque)
 
 def accessible(plateau,ligD,colD,ligA,colA):
@@ -324,12 +300,12 @@ def accessible(plateau,ligD,colD,ligA,colA):
               et la case d'arrivée
     """
     print(plateau[0][1][1])
-    calque=Matrice(getNbLignes(plateau[0]),getNbColonnes(plateau[0]),0) 
+    calque=Matrice(getNbLignes(plateau[0]),getNbColonnes(plateau[0]),0)
     setVal(calque,ligD-1,colD-1,1)
     res=False
     marquage=marquageDirect(calque,plateau,1,1)[0]
     if marquage:
-        if getVal(calque,ligA-1,colA-1)==1: 
+        if getVal(calque,ligA-1,colA-1)==1:
             res=True
     return res
 
@@ -364,8 +340,8 @@ def accessibleDist(plateau,ligD,colD,ligA,colA):
                     res.append((i,j))
         return res
 
-assert accessibleDist(([[{'nord':False,'est':False,'sud':True,'ouest':False},{'nord':False, 'est':False, 'sud':False, 'ouest':False},{'nord':False, 'est':False, 'sud':True, 'ouest':False}],[{'nord':True, 'est':False, 'sud':False, 'ouest':False},{'nord':False, 'est':False, 'sud':True, 'ouest':False},{'nord':True, 'est':False, 'sud':False, 'ouest':False}],[{'nord':False, 'est':False, 'sud':False, 'ouest':False},{'nord':True, 'est':False, 'sud':False, 'ouest':False},{'nord':False, 'est':False, 'sud':False, 'ouest':False}]],{'inutile':True}),1,1,3,3)==[(0,0),(0,1),(0,2),(1,0),(1,1),(1,2),(2,0),(2,1),(2,2)]
-assert accessibleDist(([[{'nord':False,'est':False,'sud':True,'ouest':False},{'nord':False, 'est':True, 'sud':False, 'ouest':False},{'nord':False, 'est':False, 'sud':True, 'ouest':False}],[{'nord':True, 'est':True, 'sud':False, 'ouest':False},{'nord':False, 'est':False, 'sud':True, 'ouest':True},{'nord':True, 'est':False, 'sud':False, 'ouest':False}],[{'nord':False, 'est':False, 'sud':False, 'ouest':False},{'nord':True, 'est':True, 'sud':False, 'ouest':False},{'nord':False, 'est':False, 'sud':False, 'ouest':True}]],{'inutile':True}),1,1,3,3)==[(0,0),(0,1),(1,1),(1,2),(2,2)]
+assert accessibleDist(([[{'nord':False,'est':False,'sud':True,'ouest':False},{'nord':False, 'est':False, 'sud':False, 'ouest':False},{'nord':False, 'est':False, 'sud':True, 'ouest':False}],[{'nord':True, 'est':False, 'sud':False, 'ouest':False},{'nord':False, 'est':False, 'sud':True, 'ouest':False},{'nord':True, 'est':False, 'sud':False, 'ouest':False}],[{'nord':False, 'est':False, 'sud':False, 'ouest':False},{'nord':True, 'est':False, 'sud':False, 'ouest':False},{'nord':False,'est':False, 'sud':False, 'ouest':False}]],{'inutile':True}),1,1,3,3)== [(0, 0), (0, 1), (0, 2), (1, 1), (1, 2), (2, 2)]
+assert accessibleDist(([[{'nord':False,'est':False,'sud':True,'ouest':False},{'nord':False, 'est':True, 'sud':False, 'ouest':False},{'nord':False, 'est':False, 'sud':True, 'ouest':False}],[{'nord':True, 'est':True, 'sud':False, 'ouest':False},{'nord':False, 'est':False, 'sud':True, 'ouest':True},{'nord':True, 'est':False, 'sud':False, 'ouest':False}],[{'nord':False, 'est':False, 'sud':False, 'ouest':False},{'nord':True, 'est':True, 'sud':False, 'ouest':False},{'nord':False, 'est':False, 'sud':False, 'ouest':True}]],{'inutile':True}),1,1,3,3)==[(0, 0), (0, 1), (1, 1), (1, 2), (2, 2)]
 
 
 def affichePlateau(plateau):
@@ -378,6 +354,3 @@ def affichePlateau(plateau):
         for j in range(getNbLignes(plateau[0][i])) :
             res+=toChar(plateau[0][i][j])
         print(res)
-
-# (p,_)=Plateau(2, 12)
-# affichePlateau(p)
