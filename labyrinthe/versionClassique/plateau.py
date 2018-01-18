@@ -88,7 +88,7 @@ def Plateau(nbJoueurs, nbTresors):
                 carte=Carte(False,False,False,False,0,[])
                 carte=decoderMurs(carte,liste_cartes_amovibles[cartesPlacees])
                 tourneAleatoire(carte)
-                print(cartesPlacees,carte,toChar(carte))
+                #print(cartesPlacees,carte,toChar(carte))
                 cartesPlacees+=1
                 # tourneAleatoire(carteAmovible)
                 setVal(matrice,i,j,carte)
@@ -98,20 +98,20 @@ def Plateau(nbJoueurs, nbTresors):
     # place les joueurs selon leur nombre
     if nbJoueurs>=1:
         c = getVal(matrice,0,0)
-        setListePions(c,[1])
+        setListePions(c,1)
     if nbJoueurs>=2:
         c = getVal(matrice,6,6)
-        setListePions(c,[2])
+        setListePions(c,2)
     if nbJoueurs>=3:
         c = getVal(matrice,6,0)
-        setListePions(c,[3])
+        setListePions(c,3)
     if nbJoueurs==4:
         c = getVal(matrice,0,6)
-        setListePions(c,[4])
+        setListePions(c,4)
 
 
     liste=list(range(1,nbTresors+1)) # liste qui contient les tresors
-    print(liste)
+    #print(liste)
     random.shuffle(liste)
     liste_carte_fixes=[]
     for i in [0,2,4,6]: # creation de la liste de carte fixes sans les angles
@@ -129,7 +129,7 @@ def Plateau(nbJoueurs, nbTresors):
         for j in [0,1,2,3,4,5,6]:
             liste_carte_Amovibles.append((i,j))
     random.shuffle(liste_carte_Amovibles)
-    print(liste_carte_Amovibles)
+    #print(liste_carte_Amovibles)
 
     # placement des tresors sur les cartes
     i=0
@@ -139,7 +139,7 @@ def Plateau(nbJoueurs, nbTresors):
             mettreTresor(matrice[i][j],liste[0])
             liste_carte_fixes.remove((i,j))
             liste.remove(liste[0])
-            print(liste)
+            #print(liste)
             j+=1
             if j==getNbColonnes(matrice):
                 j=0
@@ -155,7 +155,7 @@ def Plateau(nbJoueurs, nbTresors):
             i+=1
         else:
             pass
-    print(len(liste))
+    #print(len(liste))
     res=(matrice,carteAJouer)
     return res
 
@@ -244,7 +244,6 @@ def prendrePionPlateau(plateau,lin,col,numJoueur):
     prendrePion(joueur,numJoueur)
 
 
-
 def poserPionPlateau(plateau,lin,col,numJoueur):
     """
     met le pion du joueur sur la carte qui se trouve en (lig,col) du plateau
@@ -299,7 +298,7 @@ def accessible(plateau,ligD,colD,ligA,colA):
     résultat: un boolean indiquant s'il existe un chemin entre la case de départ
               et la case d'arrivée
     """
-    print(plateau[0][1][1])
+    #print(plateau[0][1][1])
     calque=Matrice(getNbLignes(plateau[0]),getNbColonnes(plateau[0]),0)
     setVal(calque,ligD-1,colD-1,1)
     res=False
@@ -328,7 +327,8 @@ def accessibleDist(plateau,ligD,colD,ligA,colA):
               de départ et la case d'arrivée
     """
     if not accessible(plateau, ligD, colD, ligA, colA):
-        return None
+        print(accessible(plateau, ligD, colD, ligA, colA))
+        return []
     else:
         calque=Matrice(getNbLignes(plateau[0]),getNbColonnes(plateau[0]),0)
         setVal(calque,ligD-1,colD-1,1)

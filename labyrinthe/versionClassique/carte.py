@@ -23,6 +23,9 @@ def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
 # False= pas de mur
 
 carte=Carte(True,False,False,True,2,[1,2])
+carte1=Carte(True,True,True,False,3,[1,3])
+carte2=Carte(False,True,True,False,2,[1,2,3])
+
 assert Carte(True,False,False,True,2,[1,2])=={"nord":True,"est":False,"sud":False,"ouest":True,"tresor":2,"pion":[1,2]}
 def estValide(c):
     """
@@ -39,6 +42,7 @@ def estValide(c):
     return res
 
 assert estValide(carte)==True
+assert estValide(carte1)==False
 
 def murNord(c):
     """
@@ -48,6 +52,7 @@ def murNord(c):
     return c['nord']
 
 assert murNord(carte)==True
+assert murNord(carte2)==False
 
 def murSud(c):
     """
@@ -57,6 +62,7 @@ def murSud(c):
     return c['sud']
 
 assert murSud(carte)==False
+assert murSud(carte1)==True
 
 def murEst(c):
     """
@@ -66,6 +72,7 @@ def murEst(c):
     return c['est']
 
 assert murEst(carte)==False
+assert murEst(carte1)==True
 
 def murOuest(c):
     """
@@ -75,6 +82,7 @@ def murOuest(c):
     return c['ouest']
 
 assert murOuest(carte)==True
+assert murOuest(carte1)==False
 
 def getListePions(c):
     """
@@ -84,6 +92,7 @@ def getListePions(c):
     return c["pion"]
 
 assert getListePions(carte)==[1,2]
+assert getListePions(carte1)==[1,3]
 
 def setListePions(c,listePions):
     """
@@ -102,6 +111,7 @@ def getNbPions(c):
     return len(c["pion"])
 
 assert getNbPions(carte)==2
+assert getNbPions(carte2)==3
 
 def possedePion(c,pion):
     """
@@ -114,6 +124,8 @@ def possedePion(c,pion):
     return res
 
 assert possedePion(carte,2)==True
+assert possedePion(carte,3)==False
+
 def getTresor(c):
     """
     retourne la valeur du trésor qui se trouve sur la carte (0 si pas de trésor)
@@ -122,6 +134,7 @@ def getTresor(c):
     return c["tresor"]
 
 assert getTresor(carte)==2
+assert getTresor(carte1)==3
 
 def prendreTresor(c):
     """
@@ -134,6 +147,7 @@ def prendreTresor(c):
     return valeur_intermediaire
 
 assert prendreTresor(carte)==2
+assert prendreTresor(carte1)==3
 
 def mettreTresor(c,tresor):
     """
@@ -300,7 +314,7 @@ def decoderMurs(c,code):
         listeBin[i]=str(code%2)
         code=code//2
         i+=1
-        print(listeBin)
+        #print(listeBin)
     if listeBin[0]=='1':
         c['ouest']=True
     else:
@@ -402,7 +416,7 @@ def passageEst(carte1,carte2):
 assert passageEst(test3,test4)==False
 
 
-def identifiant(c,identifiant):
+def identifiant(c,identifiant): #jamais utilisé
     """
     permet de mettre un indentifiant sur une carte pour qu'elle soit unique
     """

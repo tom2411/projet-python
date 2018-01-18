@@ -18,7 +18,7 @@ def ajouterTresor(joueur,tresor):
     la fonction ne retourne rien mais modifie le joueur
     """
     joueur[1].append(tresor)
-    
+
 def prochainTresor(joueur):
     """
     retourne le prochain trésor à trouver d'un joueur, retourne None si aucun trésor n'est à trouver
@@ -34,14 +34,14 @@ assert(prochainTresor(("michel",[2,3,4,5],[0])))==2
 assert(prochainTresor(("michel",[],[0])))==None
 
 def tresorTrouve(joueur):
-    """ 
+    """
     enleve le premier trésor à trouver car le joueur l'a trouvé
     paramètre:
         joueur le joueur
     la fonction ne retourne rien mais modifie le joueur
     """
     del joueur[1][0]
-    print(joueur)
+    #print(joueur)
 tresorTrouve(("michel",[1,2,3],[0]))
 
 def getNbTresorsRestants(joueur):
@@ -57,7 +57,7 @@ def getNom(joueur):
     """
     retourne le nom du joueur
     paramètre: joueur le joueur
-    résultat: le nom du joueur 
+    résultat: le nom du joueur
     """
     return joueur[0]
 assert(getNom(("michel",[1,2,3],[0])))=="michel"

@@ -42,18 +42,20 @@ def afficheCarte(lmt, carte,pion=1,tresor=-1):
     coulFond=NORMAL
     coulCar=NORMAL
     style=AUCUN
-    if getTresor(carte)==tresor:
-        coulFond=GRIS
-        coulCar=NOIR
-    lesPions=getListePions(carte)
-    if len(lesPions)>0:
-        if len(lesPions)>1:
-            style=GRAS
-        if possedePion(carte,pion):
-            coulCar=pion
-        else:  
-            coulCar=lesPions[0]
-    pcouleur(toChar(carte),coulCar,coulFond,style)
+    print(carte)
+		for carte in carte:
+		  if getTresor(carte)==tresor:
+		      coulFond=GRIS
+		      coulCar=NOIR
+		  lesPions=getListePions(carte)
+		  if len(lesPions)>0:
+		      if len(lesPions)>1:
+		          style=GRAS
+		      if possedePion(carte,pion):
+		          coulCar=pion
+		      else:  
+		          coulCar=lesPions[0]
+		  pcouleur(toChar(carte),coulCar,coulFond,style)
  
 def afficheLabyrinthe(lmt,message="",sauts=0):
     """
@@ -90,14 +92,14 @@ def afficheLabyrinthe(lmt,message="",sauts=0):
     for i in range(1,7,2):
         print(" "+str(i),sep='',end='')
     print()
-    for i in range(getNbLignes(plateau)):
+    for i in range(getNbLignes(plateau[0])):
         print(remplissage,end='')            
         if i%2==0:
             print(' ',sep='',end='')
         else:
             print(str(i),sep='',end='')
-        for j in range(getNbColonnes(plateau)):
-            afficheCarte(lmt,getVal(plateau,i,j),numJoueurCourant(listeJoueurs),tresor)
+        for j in range(getNbColonnes(plateau[0])):
+            afficheCarte(lmt,getVal(plateau[0],i,j),numJoueurCourant(listeJoueurs),tresor)
         if i%2==0:
             print(' ',sep='',end='')
         else:
@@ -152,7 +154,13 @@ def saisirOrdre(lmt):
               c'est à dire le numéro de la ligne ou de la colonne où insérer la carte
               si l'ordre saisi n'est pas valide la focntion retourne (-1,-1)
     """
-    pass
+    couple=(-1,-1)
+    ordre=input("Que voulez vous faire?")
+    if ordre=="N" or ordre=="S" or ordre=="O" or ordre=="E":
+        y=input("Quel est la rangee souhaité?")
+        couple=(ordre,int(y))
+    return couple
+
 
 def saisirDeplacement(lmt):
     """
@@ -160,7 +168,9 @@ def saisirDeplacement(lmt):
     paramètre: lmt: une vue texte de labyrinthe
     résultat: un couple d'entier (lin,col) indiquant les coordonnées de la case destination. Si l'utilisateur a entré des coordonnées incorrecte la fonction retourne (-1,-1)
     """    
-    pass
+    x=input("Quelle est la ligne sur laquelle vous voulez aller?")
+    y=input("Quelle est la colonne sur laquelle vous voulez aller?")
+    return (int(x),int(y))
         
 # demarre la partie en mode texte
 def demarrer(lmt):
