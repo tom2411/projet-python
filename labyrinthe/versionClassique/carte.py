@@ -294,27 +294,34 @@ def decoderMurs(c,code):
     #     listeValeurBinaire.insert(2,0)
     #     longueurBin+=1
     #     print(listeValeurBinaire)
-    if code[0]=='1':
+    listeBin=[0]*4
+    i=0
+    while code!=0:
+        listeBin[i]=str(code%2)
+        code=code//2
+        i+=1
+        print(listeBin)
+    if listeBin[0]=='1':
         c['ouest']=True
     else:
         c['ouest']=False
-    if code[1]=='1':
+    if listeBin[1]=='1':
         c['sud']=True
     else:
         c['sud']=False
-    if code[2]=='1':
+    if listeBin[2]=='1':
         c['est']=True
     else:
         c['est']=False
-    if code[3]=='1':
+    if listeBin[3]=='1':
         c['nord']=True
     else:
         c['nord']=False
     return c  # ATTENTION CE PRG CHANGE LE MATRICE DE BASE
 
 
-assert decoderMurs(exemple,'1001')=={"nord":True,"est":False,"sud":False,"ouest":True,"tresor":2,"pion":[1,2]}
-assert decoderMurs(exemple2,'0000')=={"nord":False,"est":False,"sud":False,"ouest":False,"tresor":0,"pion":[]}
+assert decoderMurs(exemple,9)=={"nord":True,"est":False,"sud":False,"ouest":True,"tresor":2,"pion":[1,2]}
+assert decoderMurs(exemple2,0)=={"nord":False,"est":False,"sud":False,"ouest":False,"tresor":0,"pion":[]}
 
 def toChar(c):
     """

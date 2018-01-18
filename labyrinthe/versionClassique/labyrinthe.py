@@ -1,10 +1,62 @@
 from listeJoueurs import *
 from plateau import *
 
-plat=([[{'nord': True, 'est': True, 'sud': False, 'ouest': False, 'tresor': 2, 'pion': [[1]]}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 4, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}], [{'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 2, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}], [{'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 1, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}], [{'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}], [{'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}], [{'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 2, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}], [{'nord': False, 'est': False, 'sud': True, 'ouest': True, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': [[2]]}]],{'nord': True, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': [[1]]} )
+plat=([[{'nord': True, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': [[1]]}, 
+{'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 4, 'pion': []}, 
+{'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': True, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 1, 'pion': []}, 
+{'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': True, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}], 
+[{'nord': True, 'est': True, 'sud': False, 'ouest': False, 'tresor':0 , 'pion': []}, 
+{'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 2, 'pion': []}, 
+{'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': [[0]]}, 
+{'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, 
+{'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}], 
+[{'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, 
+{'nord': True, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': [[5]]}, 
+{'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, 
+{'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': True, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}], 
+[{'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': [[4]]}, 
+{'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': [[3]]}, 
+{'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}], 
+[{'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, 
+{'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, 
+{'nord': True, 'est': False, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}],
+[{'nord': True, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': True, 'sud': False, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, 
+{'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []},
+ {'nord': False, 'est': False, 'sud': True, 'ouest': True, 'tresor': 0, 'pion': []}, 
+ {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}], 
+ [{'nord': False, 'est': False, 'sud': True, 'ouest': True, 'tresor': 0, 'pion': []}, 
+ {'nord': False, 'est': True, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, 
+ {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []},
+ {'nord': True, 'est': False, 'sud': False, 'ouest': True, 'tresor': 0, 'pion': []}, 
+ {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, 
+ {'nord': True, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []}, 
+ {'nord': False, 'est': True, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': [[2]]}]], 
+ {'nord': False, 'est': False, 'sud': True, 'ouest': False, 'tresor': 0, 'pion': []})
 
-laby={"player":[("michel",[2,4,3],[1]),("louis",[5,8,7],[0])],"phase":0,"plateau":plat,"interdit":(1,'N')}
-laby2={"player":[("michel",[1,2,3],[0]),("louis",[5,8,7],[1])],"phase":1,"plateau":plat,"interdit":(3,'O')}
+laby={"player":[("michel",[2,4,3],[1]),("louis",[5,8,7],[2])],"phase":0,"plateau":plat,"interdit":(1,'N')}
+laby2={"player":[("michel",[1,2,3],[2]),("louis",[5,8,7],[1])],"phase":1,"plateau":plat,"interdit":(3,'O')}
+laby3={"player":[("michel",[1,2,3],[3]),("louis",[5,8,7],[2])],"phase":1,"plateau":plat,"interdit":(3,'O')}
+laby4={"player":[("michel",[5,2,3],[3]),("louis",[5,8,7],[5])],"phase":1,"plateau":plat,"interdit":(3,'O')}
+
 def Labyrinthe(nomsJoueurs=["joueur1","joueurs2"],nbTresors=24, nbTresorsMax=0):
     """
     permet de créer un labyrinthe avec nbJoueurs joueurs, nbTresors trésors
@@ -23,7 +75,6 @@ def Labyrinthe(nomsJoueurs=["joueur1","joueurs2"],nbTresors=24, nbTresorsMax=0):
     initAleatoireJoueurCourant(player)
     dico["player"]=player
     dico["phase"]=0 #c'est la phase du jeu
-    print(len(nomsJoueurs))
     dico["plateau"]=Plateau(len(nomsJoueurs),nbTresors)
     dico["interdit"]=None
     return dico 
@@ -89,7 +140,7 @@ assert(getPhase({'player': [('michel', [15, 12, 10, 17, 8, 22], [0]), ('pierre',
 def changerPhase(labyrinthe):
     """
     change de phase de jeu en passant la suivante
-    paramètre: labyrinthe le labyrinthe considéré
+    paramètre: labyrinthe le print('toto')labyrinthe considéré
     la fonction ne retourne rien mais modifie le labyrinthe
     """    
     if labyrinthe["phase"]==0:
@@ -298,18 +349,24 @@ def getCoordonneesJoueurCourant(labyrinthe):
               n'est pas sur le plateau
     """
     joueur=getNumJoueurCourant(labyrinthe)
+    
     plateau=labyrinthe["plateau"][0]
     col=0
     lig=0
     for lign in plateau:
         for colo in lign:
-            if colo['pion'][0][0]==joueur:
-                return (col,lig)
+            if len(colo['pion'])!=0:
+                for pion in colo['pion']:
+                    
+                    if joueur in pion:
+                        
+                        return (col,lig)
             col+=1
+        col=0
         lig+=1
-
+print(getCoordonneesJoueurCourant(laby4))
 assert(getCoordonneesJoueurCourant(laby))==(0,0)
-
+assert(getCoordonneesJoueurCourant(laby3))==(1,3)
 def executerActionPhase1(labyrinthe,action,rangee):
     """
     exécute une action de jeu de la phase 1
@@ -356,6 +413,12 @@ def accessibleDistJoueurCourant(labyrinthe, ligA,colA):
     résultat: une liste de couples d'entier représentant un chemin que le joueur
               courant atteigne la case d'arrivée s'il existe None si pas de chemin
     """
+    x=getCoordonneesJoueurCourant(labyrinthe)[0]
+    y=getCoordonneesJoueurCourant(labyrinthe)[1]
+    return accessibleDist(getPlateau(labyrinthe),y,x,ligA,colA)
+
+print(accessibleDistJoueurCourant(laby4,2,0))
+
     
 
 def finirTour(labyrinthe):

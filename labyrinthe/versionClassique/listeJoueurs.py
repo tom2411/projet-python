@@ -1,14 +1,20 @@
 import random
 from joueur import *
 
-def ListeJoueurs(nomsJoueurs):
+
+def listeJoueurs(joueur):
     """
     créer une liste de joueurs dont les noms sont dans la liste de noms passés en paramètre
     Attention il s'agit d'une liste de joueurs qui gère la notion de joueur courant
     paramètre: nomsJoueurs une liste de chaines de caractères
     résultat: la liste des joueurs avec un joueur courant mis à 0
     """
-    pass
+    listeJoueur=[]
+    for joueur in joueur:
+        player=Joueur(joueur)
+        listeJoueur.append(player)
+    return listeJoueur
+assert(listeJoueurs(["michel","pierre","louis"])==[("michel",[],[0]),("pierre",[],[0]),("louis",[],[0])])
 
 def ajouterJoueur(joueurs, joueur):
     """
@@ -17,7 +23,7 @@ def ajouterJoueur(joueurs, joueur):
                 joueur le joueur à ajouter
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """
-    pass
+    joueurs.append(joueur)
 
 def initAleatoireJoueurCourant(joueurs):
     """
@@ -25,8 +31,16 @@ def initAleatoireJoueurCourant(joueurs):
     paramètre: joueurs un liste de joueurs
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """
-    pass
-def distribuerTresors(joueurs,nbTresors=24, nbTresorMax=0):
+    random.shuffle(joueurs)
+    e=1
+    for i in range(len(joueurs)):
+        joueurs[i][2][0]=e
+        e=e+1
+    
+initAleatoireJoueurCourant([("michel",[],[0]),("pierre",[],[0]),("louis",[],[0])])
+
+
+def distribuerTresors(joueurs,nbTresors=24,nbTresorMax=0):
     """
     distribue de manière aléatoire des trésors entre les joueurs.
     paramètres: joueurs la liste des joueurs
@@ -38,7 +52,16 @@ def distribuerTresors(joueurs,nbTresors=24, nbTresorMax=0):
                              de trésor possible  
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """
-    pass
+    listeTresor=[x for x in range(nbTresors)]
+    random.shuffle(listeTresor)
+    nbDist=len(listeTresor)//len(joueurs)
+    e=0
+    for i in range(0,len(listeTresor),len(joueurs)):
+        for joueur in joueurs:
+            joueur[1].append(listeTresor[e])
+            e=e+1
+distribuerTresors([("michel",[],[0]),("pierre",[],[0]),("louis",[],[0])])
+
 
 def changerJoueurCourant(joueurs):
     """
@@ -46,7 +69,14 @@ def changerJoueurCourant(joueurs):
     paramètres: joueurs la liste des joueurs
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """   
-    pass
+    for i in range(len(joueurs)):
+        if i==0:
+            listAv0=joueurs[len(joueurs)-1]
+            joueurs[len(joueurs)-1]=joueurs[0]
+        if i>0 and i<(len(joueurs)-1):
+            joueurs[i-1]=joueurs[i]
+    joueurs[len(joueurs)-2]=listAv0
+changerJoueurCourant([("michel",[],[1]),("pierre",[],[2]),("louis",[],[3]),("raoul",[],[4])])
 
 def getNbJoueurs(joueurs):
     """
@@ -54,7 +84,8 @@ def getNbJoueurs(joueurs):
     paramètre: joueurs la liste des joueurs
     résultat: le nombre de joueurs de la partie
     """
-    pass
+    return len(joueurs)
+assert(getNbJoueurs([("michel",[],[1]),("pierre",[],[2]),("louis",[],[3]),("raoul",[],[4])])==4)
 
 def getJoueurCourant(joueurs):
     """
@@ -62,7 +93,8 @@ def getJoueurCourant(joueurs):
     paramètre: joueurs la liste des joueurs
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """
-    pass
+    return joueurs[0]
+assert(getJoueurCourant([("michel",[],[1]),("pierre",[],[2]),("louis",[],[3]),("raoul",[],[4])])==("michel",[],[1]))
 
 def joueurCourantTrouveTresor(joueurs):
     """
@@ -71,7 +103,7 @@ def joueurCourantTrouveTresor(joueurs):
     paramètre: joueurs la liste des joueurs
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """
-    pass
+    del joueurs[0][1][0]
 
 def nbTresorsRestantsJoueur(joueurs,numJoueur):
     """
@@ -81,7 +113,11 @@ def nbTresorsRestantsJoueur(joueurs,numJoueur):
                 numJoueur le numéro du joueur
     résultat: le nombre de trésors que joueur numJoueur doit encore trouver
     """
-    pass
+    for joueur in joueurs:
+        if joueur[2][0]==numJoueur:
+            return len(joueur[1])
+assert (nbTresorsRestantsJoueur([("michel",[1,2,3],[1]),("pierre",[4,5,6],[2]),("louis",[7,8,9],[3]),("raoul",[10,11,12],[4])],2)==3)
+
 
 def numJoueurCourant(joueurs):
     """
@@ -89,7 +125,8 @@ def numJoueurCourant(joueurs):
     paramètre: joueurs la liste des joueurs
     résultat: le numéro du joueur courant
     """
-    pass
+    return joueurs[0][2][0]
+assert(numJoueurCourant([("michel",[1,2,3],[1]),("pierre",[4,5,6],[2]),("louis",[7,8,9],[3]),("raoul",[10,11,12],[4])])==1)
 
 def nomJoueurCourant(joueurs):
     """
@@ -97,7 +134,8 @@ def nomJoueurCourant(joueurs):
     paramètre: joueurs la liste des joueurs
     résultat: le nom du joueur courant
     """
-    pass
+    return joueurs[0][0]
+assert(nomJoueurCourant([("michel",[1,2,3],[1]),("pierre",[4,5,6],[2]),("louis",[7,8,9],[3]),("raoul",[10,11,12],[4])])=="michel")
 
 def nomJoueur(joueurs,numJoueur):
     """
@@ -106,7 +144,11 @@ def nomJoueur(joueurs,numJoueur):
                 numJoueur le numéro du joueur    
     résultat: le nom du joueur numJoueur
     """
-    pass
+    for joueur in joueurs:
+        if joueur[2][0]==numJoueur:
+            return joueur[0]
+assert(nomJoueur([("michel",[1,2,3],[1]),("pierre",[4,5,6],[2]),("louis",[7,8,9],[3]),("raoul",[10,11,12],[4])],2)=="pierre")
+    
 
 def prochainTresorJoueur(joueurs,numJoueur):
     """
@@ -115,7 +157,12 @@ def prochainTresorJoueur(joueurs,numJoueur):
                 numJoueur le numéro du joueur    
     résultat: le prochain trésor du joueur numJoueur (un entier)
     """
-    pass
+    for joueur in joueurs:
+        if joueur[2][0]==numJoueur:
+            return joueur[1][0]
+assert(prochainTresorJoueur([("michel",[1,2,3],[1]),("pierre",[4,5,6],[2]),("louis",[7,8,9],[3]),("raoul",[10,11,12],[4])],2)==4)
+
+    
 
 def tresorCourant(joueurs):
     """
@@ -123,7 +170,8 @@ def tresorCourant(joueurs):
     paramètre: joueurs la liste des joueurs 
     résultat: le prochain trésor du joueur courant (un entier)
     """
-    pass
+    return joueurs[0][1][0]
+assert(tresorCourant([("michel",[1,2,3],[1]),("pierre",[4,5,6],[2]),("louis",[7,8,9],[3]),("raoul",[10,11,12],[4])])==1)
 
 def joueurCourantAFini(joueurs):
     """
@@ -131,4 +179,9 @@ def joueurCourantAFini(joueurs):
     paramètre: joueurs la liste des joueurs 
     résultat: un booleen indiquant si le joueur courant a fini
     """
-    pass
+    res=False
+    if joueurs[0][1] == []:
+        res=True
+    return res
+assert(joueurCourantAFini([("michel",[1,2,3],[1]),("pierre",[4,5,6],[2]),("louis",[7,8,9],[3]),("raoul",[10,11,12],[4])])==False)
+assert(joueurCourantAFini([("michel",[],[1]),("pierre",[4,5,6],[2]),("louis",[7,8,9],[3]),("raoul",[10,11,12],[4])])==True)

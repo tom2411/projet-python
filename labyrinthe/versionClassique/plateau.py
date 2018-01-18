@@ -74,9 +74,9 @@ def Plateau(nbJoueurs, nbTresors):
 
 
 
-    liste_Angles=['0100']*16
-    liste_Jonctions=['0101']*6
-    liste_tout_droits=['0110']*12
+    liste_Angles=[4]*16
+    liste_Jonctions=[5]*6
+    liste_tout_droits=[6]*12
     liste_cartes_amovibles=liste_Angles+liste_Jonctions+liste_tout_droits
 
     random.shuffle(liste_cartes_amovibles)
